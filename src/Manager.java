@@ -2,7 +2,7 @@ import java.util.*;
 
 public class Manager {
 
-    int taskCount = 1;                  // счётчик задач
+    protected int taskCount = 1;                  // счётчик задач
 
     HashMap<Integer, Task> tasksMap = new HashMap<>();
     HashMap<Integer, Subtask> subtasksMap = new HashMap<>();
