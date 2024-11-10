@@ -6,19 +6,19 @@ public class Task {
     protected String name;
     protected String description;
     protected TaskStatus status;
-    protected final int id;
+    protected int id;
 
-    public Task(String name, String description, int taskCount, TaskStatus status) {
+    public Task(String name, String description, int id, TaskStatus status) {
         this.name = name;
         this.description = description;
-        this.id = taskCount;
+        this.id = id;
         this.status = status;
     }
 
-    public Task(String name, String description, int taskCount) {
+    public Task(String name, String description, int id) {
         this.name = name;
         this.description = description;
-        this.id = taskCount;
+        this.id = id;
         this.status = TaskStatus.NEW;
     }
 
