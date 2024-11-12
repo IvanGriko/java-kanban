@@ -1,6 +1,5 @@
 package ru.yandex.tasktracker.test;
 
-import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -8,12 +7,20 @@ import ru.yandex.tasktracker.model.Epic;
 import ru.yandex.tasktracker.model.Subtask;
 import ru.yandex.tasktracker.model.Task;
 import ru.yandex.tasktracker.service.InMemoryTaskManager;
+import ru.yandex.tasktracker.service.Managers;
 import ru.yandex.tasktracker.service.TaskManager;
-import ru.yandex.tasktracker.service.TaskStatus;
+import ru.yandex.tasktracker.model.TaskStatus;
 
 import java.util.ArrayList;
 
 class InMemoryTaskManagerTest {
+
+    TaskManager testManager;
+
+    @BeforeEach
+    public void initManager(){
+        testManager = Managers.getDefaultTaskManager();
+    }
 
     @Test
     void tasksIsEqualsIfIDsIsEquals() {
@@ -23,8 +30,7 @@ class InMemoryTaskManagerTest {
     }
 
     @Test
-    void getTasks() {
-        TaskManager testManager = new InMemoryTaskManager();
+    void getTasksTest() {
         Task testTask1 = new Task("Задача1", "Первая задача",
                 ((InMemoryTaskManager) testManager).taskCount, TaskStatus.NEW);
         testManager.addTask(testTask1);
@@ -39,8 +45,7 @@ class InMemoryTaskManagerTest {
     }
 
     @Test
-    void deleteTasks() {
-        TaskManager testManager = new InMemoryTaskManager();
+    void deleteTasksTest() {
         Task testTask1 = new Task("Задача1", "Первая задача",
                 ((InMemoryTaskManager) testManager).taskCount, TaskStatus.NEW);
         testManager.addTask(testTask1);
@@ -52,8 +57,7 @@ class InMemoryTaskManagerTest {
     }
 
     @Test
-    void getTask() {
-        TaskManager testManager = new InMemoryTaskManager();
+    void getTaskTest() {
         Task testTask1 = new Task("Задача1", "Первая задача",
                 ((InMemoryTaskManager) testManager).taskCount, TaskStatus.NEW);
         testManager.addTask(testTask1);
@@ -61,8 +65,7 @@ class InMemoryTaskManagerTest {
     }
 
     @Test
-    void addTask() {
-        TaskManager testManager = new InMemoryTaskManager();
+    void addTaskTest() {
         Task testTask1 = new Task("Задача1", "Первая задача",
                 ((InMemoryTaskManager) testManager).taskCount, TaskStatus.NEW);
         testManager.addTask(testTask1);
@@ -70,8 +73,7 @@ class InMemoryTaskManagerTest {
     }
 
     @Test
-    void updateTask() {
-        TaskManager testManager = new InMemoryTaskManager();
+    void updateTaskTest() {
         Task testTask1 = new Task("Задача1", "Первая задача",
                 ((InMemoryTaskManager) testManager).taskCount, TaskStatus.NEW);
         testManager.addTask(testTask1);
@@ -86,8 +88,7 @@ class InMemoryTaskManagerTest {
     }
 
     @Test
-    void removeTask() {
-        TaskManager testManager = new InMemoryTaskManager();
+    void removeTaskTest() {
         Task testTask1 = new Task("Задача1", "Первая задача",
                 ((InMemoryTaskManager) testManager).taskCount, TaskStatus.NEW);
         testManager.addTask(testTask1);
@@ -97,8 +98,7 @@ class InMemoryTaskManagerTest {
     }
 
     @Test
-    void removeTaskByID() {
-        TaskManager testManager = new InMemoryTaskManager();
+    void removeTaskByIDTest() {
         Task testTask1 = new Task("Задача1", "Первая задача",
                 ((InMemoryTaskManager) testManager).taskCount, TaskStatus.NEW);
         testManager.addTask(testTask1);
@@ -108,8 +108,7 @@ class InMemoryTaskManagerTest {
     }
 
     @Test
-    void getSubtasks() {
-        TaskManager testManager = new InMemoryTaskManager();
+    void getSubtasksTest() {
         Epic epic1 = new Epic("Эпик1", "Первый эпик",
                 ((InMemoryTaskManager) testManager).taskCount);
         testManager.addEpic(epic1);
@@ -130,8 +129,7 @@ class InMemoryTaskManagerTest {
     }
 
     @Test
-    void subtasksIsEqualsIfIDsIsEquals() {
-        TaskManager testManager = new InMemoryTaskManager();
+    void subtasksIsEqualsIfIDsIsEqualsTest() {
         Epic epic1 = new Epic("Эпик1", "Первый эпик", 1);
         Epic epic2 = new Epic("Эпик2", "Второй эпик", 1);
         Task testSubtask1 = new Subtask("Подзадача1", "Первая подзадача",
@@ -142,8 +140,7 @@ class InMemoryTaskManagerTest {
     }
 
     @Test
-    void deleteSubtasks() {
-        TaskManager testManager = new InMemoryTaskManager();
+    void deleteSubtasksTest() {
         Epic epic1 = new Epic("Эпик1", "Первый эпик",
                 ((InMemoryTaskManager) testManager).taskCount);
         testManager.addEpic(epic1);
@@ -159,8 +156,7 @@ class InMemoryTaskManagerTest {
     }
 
     @Test
-    void getSubtask() {
-        TaskManager testManager = new InMemoryTaskManager();
+    void getSubtaskTest() {
         Epic epic1 = new Epic("Эпик1", "Первый эпик",
                 ((InMemoryTaskManager) testManager).taskCount);
         testManager.addEpic(epic1);
@@ -172,8 +168,7 @@ class InMemoryTaskManagerTest {
     }
 
     @Test
-    void addSubtask() {
-        TaskManager testManager = new InMemoryTaskManager();
+    void addSubtaskTest() {
         Epic epic1 = new Epic("Эпик1", "Первый эпик",
                 ((InMemoryTaskManager) testManager).taskCount);
         testManager.addEpic(epic1);
@@ -185,8 +180,7 @@ class InMemoryTaskManagerTest {
     }
 
     @Test
-    void updateSubtask() {
-        TaskManager testManager = new InMemoryTaskManager();
+    void updateSubtaskTest() {
         Epic epic1 = new Epic("Эпик1", "Первый эпик",
                 ((InMemoryTaskManager) testManager).taskCount);
         testManager.addEpic(epic1);
@@ -203,8 +197,7 @@ class InMemoryTaskManagerTest {
     }
 
     @Test
-    void removeSubtask() {
-        TaskManager testManager = new InMemoryTaskManager();
+    void removeSubtaskTest() {
         Epic epic1 = new Epic("Эпик1", "Первый эпик",
                 ((InMemoryTaskManager) testManager).taskCount);
         testManager.addEpic(epic1);
@@ -217,8 +210,7 @@ class InMemoryTaskManagerTest {
     }
 
     @Test
-    void removeSubtaskByID() {
-        TaskManager testManager = new InMemoryTaskManager();
+    void removeSubtaskByIDTest() {
         Epic epic1 = new Epic("Эпик1", "Первый эпик",
                 ((InMemoryTaskManager) testManager).taskCount);
         testManager.addEpic(epic1);
@@ -231,8 +223,7 @@ class InMemoryTaskManagerTest {
     }
 
     @Test
-    void getEpics() {
-        TaskManager testManager = new InMemoryTaskManager();
+    void getEpicsTest() {
         Epic epic1 = new Epic("Эпик1", "Первый эпик",
                 ((InMemoryTaskManager) testManager).taskCount);
         testManager.addEpic(epic1);
@@ -247,8 +238,7 @@ class InMemoryTaskManagerTest {
     }
 
     @Test
-    void epicsIsEqualsIfIDsIsEquals() {
-        TaskManager testManager = new InMemoryTaskManager();
+    void epicsIsEqualsIfIDsIsEqualsTest() {
         Epic epic1 = new Epic("Эпик1", "Первый эпик", 1);
         Epic epic2 = new Epic("Эпик2", "Второй эпик", 2);
         Task testSubtask1 = new Subtask("Подзадача1", "Первая подзадача",
@@ -259,8 +249,7 @@ class InMemoryTaskManagerTest {
     }
 
     @Test
-    void deleteEpics() {
-        TaskManager testManager = new InMemoryTaskManager();
+    void deleteEpicsTest() {
         Epic epic1 = new Epic("Эпик1", "Первый эпик",
                 ((InMemoryTaskManager) testManager).taskCount);
         testManager.addEpic(epic1);
@@ -273,8 +262,7 @@ class InMemoryTaskManagerTest {
     }
 
     @Test
-    void getEpic() {
-        TaskManager testManager = new InMemoryTaskManager();
+    void getEpicTest() {
         Epic epic1 = new Epic("Эпик1", "Первый эпик",
                 ((InMemoryTaskManager) testManager).taskCount);
         testManager.addEpic(epic1);
@@ -283,8 +271,7 @@ class InMemoryTaskManagerTest {
     }
 
     @Test
-    void addEpic() {
-        TaskManager testManager = new InMemoryTaskManager();
+    void addEpicTest() {
         Epic epic1 = new Epic("Эпик1", "Первый эпик",
                 ((InMemoryTaskManager) testManager).taskCount);
         testManager.addEpic(epic1);
@@ -293,8 +280,7 @@ class InMemoryTaskManagerTest {
     }
 
     @Test
-    void updateEpic() {
-        TaskManager testManager = new InMemoryTaskManager();
+    void updateEpicTest() {
         Epic epic1 = new Epic("Эпик1", "Первый эпик",
                 ((InMemoryTaskManager) testManager).taskCount);
         testManager.addEpic(epic1);
@@ -312,8 +298,7 @@ class InMemoryTaskManagerTest {
     }
 
     @Test
-    void removeEpic() {
-        TaskManager testManager = new InMemoryTaskManager();
+    void removeEpicTest() {
         Epic epic1 = new Epic("Эпик1", "Первый эпик",
                 ((InMemoryTaskManager) testManager).taskCount);
         testManager.addEpic(epic1);
@@ -327,15 +312,13 @@ class InMemoryTaskManagerTest {
     }
 
     @Test
-    void updateEpicStatus() {
-        TaskManager testManager = new InMemoryTaskManager();
+    void updateEpicStatusTest() {
         Epic epic1 = new Epic("Эпик1", "Первый эпик",
                 ((InMemoryTaskManager) testManager).taskCount);
         testManager.addEpic(epic1);
         Subtask testSubtask1 = new Subtask("Подзадача1", "Первая подзадача",
                 ((InMemoryTaskManager) testManager).taskCount, TaskStatus.NEW, epic1);
         testManager.addSubtask(testSubtask1);
-        Subtask oldSubtask = testSubtask1;
         Subtask updatingSubtask = testManager.getSubtask(testSubtask1.getId());
         updatingSubtask.setDescription("Обновлённая задача");
         updatingSubtask.setStatus(TaskStatus.DONE);
@@ -345,8 +328,7 @@ class InMemoryTaskManagerTest {
     }
 
     @Test
-    void getSubtasksByEpic() {
-        TaskManager testManager = new InMemoryTaskManager();
+    void getSubtasksByEpicTest() {
         Epic epic1 = new Epic("Эпик1", "Первый эпик",
                 ((InMemoryTaskManager) testManager).taskCount);
         testManager.addEpic(epic1);

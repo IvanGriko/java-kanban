@@ -4,21 +4,22 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="dec4f7ba-080c-4913-a420-5017c8352794" name="Changes" comment="Разбивка по пакетам, добавлены методы удаления по ID">
-      <change afterPath="$PROJECT_DIR$/src/org/junit/jupiter/api/Test.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/ru/yandex/tasktracker/service/HistoryManager.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/ru/yandex/tasktracker/service/InMemoryHistoryManager.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/ru/yandex/tasktracker/service/InMemoryTaskManager.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/ru/yandex/tasktracker/service/Managers.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/ru/yandex/tasktracker/test/InMemoryHistoryManagerTest.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/ru/yandex/tasktracker/test/InMemoryTaskManagerTest.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/ru/yandex/tasktracker/test/ManagersTest.java" afterDir="false" />
+    <list default="true" id="dec4f7ba-080c-4913-a420-5017c8352794" name="Changes" comment="ФЗ 5.&#10;Добавлены тесты, журнал истории просмотров.">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/TaskManager.iml" beforeDir="false" afterPath="$PROJECT_DIR$/TaskManager.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/ru/yandex/tasktracker/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ru/yandex/tasktracker/Main.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/ru/yandex/tasktracker/model/Epic.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ru/yandex/tasktracker/model/Epic.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/ru/yandex/tasktracker/model/Subtask.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ru/yandex/tasktracker/model/Subtask.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/ru/yandex/tasktracker/model/Task.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ru/yandex/tasktracker/model/Task.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/ru/yandex/tasktracker/service/HistoryManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ru/yandex/tasktracker/service/HistoryManager.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/ru/yandex/tasktracker/service/InMemoryHistoryManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ru/yandex/tasktracker/service/InMemoryHistoryManager.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/ru/yandex/tasktracker/service/InMemoryTaskManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ru/yandex/tasktracker/service/InMemoryTaskManager.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/ru/yandex/tasktracker/service/Managers.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ru/yandex/tasktracker/service/Managers.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/ru/yandex/tasktracker/service/TaskManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ru/yandex/tasktracker/service/TaskManager.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/ru/yandex/tasktracker/service/TaskStatus.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/ru/yandex/tasktracker/test/InMemoryHistoryManagerTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ru/yandex/tasktracker/test/InMemoryHistoryManagerTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/ru/yandex/tasktracker/test/InMemoryTaskManagerTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ru/yandex/tasktracker/test/InMemoryTaskManagerTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/ru/yandex/tasktracker/test/ManagersTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ru/yandex/tasktracker/test/ManagersTest.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -52,7 +53,7 @@
   }
 }</component>
   <component name="ProblemsViewState">
-    <option name="selectedTabId" value="ProjectErrors" />
+    <option name="selectedTabId" value="CurrentFile" />
   </component>
   <component name="ProjectColorInfo">{
   &quot;associatedIndex&quot;: 4
@@ -78,7 +79,7 @@
     "git-widget-placeholder": "main",
     "java.suggest.annotation.dependency": "false",
     "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "C:/Users/griko/IdeaProjects/java-kanban sp.5",
+    "last_opened_file_path": "C:/Users/griko/IdeaProjects/java-kanban",
     "onboarding.tips.debug.path": "C:/Users/griko/IdeaProjects/TaskManager/src/Main.java",
     "settings.editor.selected.configurable": "preferences.lookFeel"
   }
@@ -96,6 +97,23 @@
       <recent name="ru.yandex.tasktracker.test" />
       <recent name="ru.yandex.tasktracker.model" />
     </key>
+  </component>
+  <component name="RunManager">
+    <configuration name="Main" type="Application" factoryName="Application" nameIsGenerated="true">
+      <option name="ALTERNATIVE_JRE_PATH" value="22" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="true" />
+      <option name="MAIN_CLASS_NAME" value="ru.yandex.tasktracker.Main" />
+      <module name="TaskManager" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="ru.yandex.tasktracker.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
@@ -146,7 +164,15 @@
       <option name="project" value="LOCAL" />
       <updated>1730398991902</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="ФЗ 5.&#10;Добавлены тесты, журнал истории просмотров.">
+      <option name="closed" value="true" />
+      <created>1731248341751</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1731248341751</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -163,6 +189,7 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="protected taskCount" />
     <MESSAGE value="Разбивка по пакетам, добавлены методы удаления по ID" />
-    <option name="LAST_COMMIT_MESSAGE" value="Разбивка по пакетам, добавлены методы удаления по ID" />
+    <MESSAGE value="ФЗ 5.&#10;Добавлены тесты, журнал истории просмотров." />
+    <option name="LAST_COMMIT_MESSAGE" value="ФЗ 5.&#10;Добавлены тесты, журнал истории просмотров." />
   </component>
 </project>

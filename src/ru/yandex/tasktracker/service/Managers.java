@@ -2,17 +2,7 @@ package ru.yandex.tasktracker.service;
 
 public class Managers {
 
-
-    public Object taskManager;
-
-    public Managers(InMemoryTaskManager taskManager) {
-        this.taskManager = getInMemoryTaskManager();
-    }
-
-    public Managers() {
-    }
-
-    public static TaskManager getInMemoryTaskManager() {
+    public static TaskManager getDefaultTaskManager() {
         return new InMemoryTaskManager();
     }
 

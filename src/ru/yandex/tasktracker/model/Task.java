@@ -1,7 +1,5 @@
 package ru.yandex.tasktracker.model;
 
-import ru.yandex.tasktracker.service.TaskStatus;
-
 public class Task {
     protected String name;
     protected String description;

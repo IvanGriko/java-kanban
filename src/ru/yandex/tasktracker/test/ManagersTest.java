@@ -6,16 +6,14 @@ import ru.yandex.tasktracker.model.Task;
 import ru.yandex.tasktracker.service.HistoryManager;
 import ru.yandex.tasktracker.service.Managers;
 import ru.yandex.tasktracker.service.TaskManager;
-import ru.yandex.tasktracker.service.TaskStatus;
-
-import static org.junit.jupiter.api.Assertions.*;
+import ru.yandex.tasktracker.model.TaskStatus;
 
 class ManagersTest {
 
     @Test // утилитарный класс всегда возвращает проинициализированные и готовые к работе экземпляры менеджеров:
-    void getInMemoryTaskManagerTest(){
+    void getDefaultTaskManagerTest(){
         Managers manager = new Managers();
-        TaskManager taskManager = manager.getInMemoryTaskManager();
+        TaskManager taskManager = manager.getDefaultTaskManager();
         Task task = new Task("Name", "Description", 1, TaskStatus.NEW);
         taskManager.addTask(task);
         Assertions.assertNotNull(manager, "Менеджер не найден.");
@@ -25,7 +23,7 @@ class ManagersTest {
     @Test
     void getDefaultHistoryTest(){
         Managers manager = new Managers();
-        TaskManager taskManager = manager.getInMemoryTaskManager();
+        TaskManager taskManager = manager.getDefaultTaskManager();
         HistoryManager historyManager = manager.getDefaultHistory();
         Task task = new Task("Name", "Description", 1, TaskStatus.NEW);
         taskManager.addTask(task);
@@ -39,7 +37,7 @@ class ManagersTest {
     @Test // проверяется неизменность задачи (по всем полям) при добавлении задачи в менеджер
     void variablesAreSameAfterAddingTaskToManager() {
         Task task = new Task("Name", "Description", 1, TaskStatus.NEW);
-        TaskManager taskManager = Managers.getInMemoryTaskManager();
+        TaskManager taskManager = Managers.getDefaultTaskManager();
         taskManager.addTask(task);
         Assertions.assertEquals(task, taskManager.getTask(task.getId()),
                 "Задачи не совпадают.");

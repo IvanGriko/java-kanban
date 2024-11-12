@@ -1,7 +1,5 @@
 package ru.yandex.tasktracker.model;
 
-import ru.yandex.tasktracker.service.TaskStatus;
-
 import java.util.ArrayList;
 import java.util.Objects;
 

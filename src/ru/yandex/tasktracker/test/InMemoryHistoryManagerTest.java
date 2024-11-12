@@ -1,24 +1,31 @@
 package ru.yandex.tasktracker.test;
 
 import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import ru.yandex.tasktracker.model.Epic;
 import ru.yandex.tasktracker.model.Subtask;
 import ru.yandex.tasktracker.model.Task;
 import ru.yandex.tasktracker.service.InMemoryTaskManager;
+import ru.yandex.tasktracker.service.Managers;
 import ru.yandex.tasktracker.service.TaskManager;
-import ru.yandex.tasktracker.service.TaskStatus;
+import ru.yandex.tasktracker.model.TaskStatus;
 
 import java.util.ArrayList;
 
 import static java.util.Arrays.asList;
-import static org.junit.jupiter.api.Assertions.*;
 
 class InMemoryHistoryManagerTest {
 
+    TaskManager testManager;
+
+    @BeforeEach
+    public void initManager(){
+        testManager = Managers.getDefaultTaskManager();
+    }
+
     @Test
-    void getHistory() {
-        TaskManager testManager = new InMemoryTaskManager();
+    void getHistoryTest() {
         Task task = new Task("Задача", "Тестовая",
                 ((InMemoryTaskManager) testManager).taskCount, TaskStatus.NEW);
         testManager.addTask(task);
@@ -49,7 +56,6 @@ class InMemoryHistoryManagerTest {
 
     @Test
     void historyManagerSavesPreviousVersionOfTask() {
-        TaskManager testManager = new InMemoryTaskManager();
         Task task = new Task("Задача", "Тестовая",
                 ((InMemoryTaskManager) testManager).taskCount, TaskStatus.NEW);
         testManager.addTask(task);
@@ -58,10 +64,6 @@ class InMemoryHistoryManagerTest {
         task.setStatus(TaskStatus.IN_PROGRESS);
         testManager.updateTask(task);
         testManager.getTask(task.getId());
-        Assertions.assertFalse((testManager.getHistory().get(0).toString()).
-                equals(testManager.getHistory().get(1).toString()),
-                "Сохранена одна и та же версия задачи.");
-
-
+        Assertions.assertNotEquals((testManager.getHistory().get(0).toString()), testManager.getHistory().get(1).toString(), "Сохранена одна и та же версия задачи.");
     }
 }

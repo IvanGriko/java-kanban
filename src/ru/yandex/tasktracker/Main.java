@@ -1,39 +1,50 @@
 package ru.yandex.tasktracker;
+import org.junit.jupiter.api.Assertions;
 import ru.yandex.tasktracker.model.Epic;
 import ru.yandex.tasktracker.model.Subtask;
 import ru.yandex.tasktracker.model.Task;
 import ru.yandex.tasktracker.service.InMemoryTaskManager;
-import ru.yandex.tasktracker.service.TaskManager;
-import ru.yandex.tasktracker.service.TaskStatus;
+import ru.yandex.tasktracker.model.TaskStatus;
 
 public class Main {
     public static void main(String[] args) {
 
-        TaskManager manager = new InMemoryTaskManager();
+        InMemoryTaskManager testManager = new InMemoryTaskManager();
+        Task task = new Task("Задача", "Тестовая",
+                testManager.taskCount, TaskStatus.NEW);
+        testManager.addTask(task);
+        testManager.getTask(task.getId());
+        task.setDescription("Изменённая");
+        task.setStatus(TaskStatus.IN_PROGRESS);
+        testManager.updateTask(task);
+        testManager.getTask(task.getId());
+        Assertions.assertNotEquals((testManager.getHistory().get(0).toString()), testManager.getHistory().get(1).toString(), "Сохранена одна и та же версия задачи.");
+
+        InMemoryTaskManager manager = new InMemoryTaskManager();
 
         System.out.println("\nСоздайте две задачи, а также эпик с двумя подзадачами и эпик с одной подзадачей.\n");
 
         Task task1 = new Task("Задача1", "Первая задача",
-                ((InMemoryTaskManager) manager).taskCount, TaskStatus.NEW);
+                manager.taskCount, TaskStatus.NEW);
         manager.addTask(task1);
         Task task2 = new Task("Задача2", "Вторая задача",
-                ((InMemoryTaskManager) manager).taskCount, TaskStatus.NEW);
+                manager.taskCount, TaskStatus.NEW);
         manager.addTask(task2);
 
         Epic epic1 = new Epic("Эпик 1", "Первый эпик",
-                ((InMemoryTaskManager) manager).taskCount);
+                manager.taskCount);
         manager.addEpic(epic1);
         Subtask subtask1 = new Subtask("Подзадача 1", "Подзадача 1 эпика 1",
-                ((InMemoryTaskManager) manager).taskCount, TaskStatus.NEW, epic1);
+                manager.taskCount, TaskStatus.NEW, epic1);
         manager.addSubtask(subtask1);
         Subtask subtask2 = new Subtask("Подзадача 2", "Подзадача 2 эпика 1",
-                ((InMemoryTaskManager) manager).taskCount, TaskStatus.NEW, epic1);
+                manager.taskCount, TaskStatus.NEW, epic1);
         manager.addSubtask(subtask2);
         Epic epic2 = new Epic("Эпик 2", "Второй эпик",
-                ((InMemoryTaskManager) manager).taskCount);
+                manager.taskCount);
         manager.addEpic(epic2);
         Subtask subtask3 = new Subtask("Подзадача 3", "Подзадача 3 эпика 2",
-                ((InMemoryTaskManager) manager).taskCount, TaskStatus.NEW, epic2);
+                manager.taskCount, TaskStatus.NEW, epic2);
         manager.addSubtask(subtask3);
 
         System.out.println("Распечатайте списки эпиков, задач и подзадач через System.out.println(..).\n");
