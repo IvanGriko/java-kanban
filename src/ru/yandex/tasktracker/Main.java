@@ -69,53 +69,5 @@ public class Main {
 
         manager.removeEpic(3);
         System.out.println("История запросов:" + manager.getHistory() + "\n");
-
-//        System.out.println("Проверьте, что статус задачи и подзадачи сохранился, ");
-//        System.out.println("а статус эпика рассчитался по статусам подзадач.\n");
-//
-//        task1.setStatus(TaskStatus.IN_PROGRESS);
-//        System.out.println("Статус задачи task1 изменён на IN_PROGRESS: " + task1 + "\n");
-//
-//        subtask1.setStatus(TaskStatus.IN_PROGRESS);
-//        subtask2.setStatus(TaskStatus.DONE);
-//        subtask3.setStatus(TaskStatus.DONE);
-//
-//        System.out.println("Статусы подзадач изменены на IN_PROGRESS, DONE, DONE:" + manager.getSubtasks() + "\n");
-//
-//        manager.updateEpicStatus(epic1);
-//        manager.updateEpicStatus(epic2);
-//
-//        manager.getTask(10);
-//        manager.getTask(9);
-//        manager.getTask(8);
-//        manager.getTask(7);
-//        manager.getTask(6);
-//        manager.getTask(5);
-//        manager.getTask(5);
-//        manager.getTask(4);
-//        manager.getTask(3);
-//        manager.getTask(2);
-//        manager.getTask(2);
-//        manager.getTask(11);
-//        manager.getTask(12);
-//        manager.getTask(13);
-//        manager.getTask(14);
-//
-//        System.out.println("Статусы эпиков пересчитаны:" + manager.getEpics() + "\n");
-//
-//        System.out.println("\nИстория просмотра: " + manager.getHistory() + "\n");
-//
-//        System.out.println("И, наконец, попробуйте удалить одну из задач и один из эпиков.\n");
-//
-//        manager.removeTask(task1);
-//        System.out.println("Задача task1 удалена. Список задач: " + manager.getTasks() + "\n");
-//
-//        manager.removeEpic(19);
-//
-//        System.out.println("Эпик с ID 3 удалён. Списки оставшихся подзадач и эпиков:\n");
-//        System.out.println(manager.getSubtasks());
-//        System.out.println(manager.getEpics());
-//
-//        System.out.println("\nИстория просмотра:\n" + manager.getHistory() + "\n");
-//    }
-}}
+    }
+}
