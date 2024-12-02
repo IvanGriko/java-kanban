@@ -2,16 +2,12 @@ package ru.yandex.tasktracker.service;
 
 import ru.yandex.tasktracker.model.Task;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 public class InMemoryHistoryManager implements HistoryManager {
 
     private Node<Task> head;
     private Node<Task> tail;
-    private int size = 0;
     private final Map<Integer, Node> historyMap = new HashMap<>();
 
     private Node<Task> linkLast(Task task) {
@@ -24,16 +20,15 @@ public class InMemoryHistoryManager implements HistoryManager {
         } else {
             oldTail.next = newNode;
         }
-        size++;
         Task t = newNode.task;
         historyMap.put(t.getId(), newNode);
         return newNode;
     }
 
     private List<Task> getTasks() {
-        List<Task> tasksList = new ArrayList<>();
+        List<Task> tasksList = new LinkedList<>();
         Node<Task> node = head;
-        while(node != null) {
+        while (node != null) {
             tasksList.add(node.task);
             node = node.next;
         }
@@ -41,33 +36,18 @@ public class InMemoryHistoryManager implements HistoryManager {
     }
 
     private void removeNode(Node node) {
-        Node<Task> prevNode = node.prev;
-        Node<Task> nextNode = node.next;
-        if (size == 1) {
+        if (node.next == null && node.prev == null) {
             head = null;
             tail = null;
             node.task = null;
-        } else if (size > 1) {
-            if (prevNode == null) {
-                head = nextNode;
-                nextNode.prev = null;
-                node.next = null;
-                node.task = null;
-            } else if (nextNode == null) {
-                tail = prevNode;
-                prevNode.next = null;
-                node.prev = null;
-                node.task = null;
-            } else {
-                prevNode.next = nextNode;
-                nextNode.prev = prevNode;
-                node.next = null;
-                node.prev = null;
-                node.task = null;
-            }
-        }
-        if (size != 0) {
-            size--;
+        } else if (node == head) {
+            head = node.next;
+            node.task = null;
+        } else if (node == tail) {
+            tail = node.prev;
+            node.task = null;
+        } else if (node.prev != null && node.next != null) {
+            node.prev.next = node.next;
         }
     }
 
@@ -81,9 +61,9 @@ public class InMemoryHistoryManager implements HistoryManager {
 
     @Override
     public void remove(Integer id) {
-        if (historyMap.containsKey(id)) {
-            getTasks().remove(id);
-            removeNode(historyMap.get(id));
+        Node node = historyMap.get(id);
+        if (node != null) {
+            removeNode(node);
             historyMap.remove(id);
         }
     }
