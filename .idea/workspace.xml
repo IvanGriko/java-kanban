@@ -4,7 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="dec4f7ba-080c-4913-a420-5017c8352794" name="Changes" comment="ФЗ 6.1&#10;- В Node указать в качестве параметра неопределенный тип T;&#10;- Исправить методов remove() и removeNode() в InMemoryHistoryManager;&#10;- Добавить автотесты" />
+    <list default="true" id="dec4f7ba-080c-4913-a420-5017c8352794" name="Changes" comment="ФЗ 6.1&#10;- В Node указать в качестве параметра неопределенный тип T;&#10;- Исправить методов remove() и removeNode() в InMemoryHistoryManager;&#10;- Добавить автотесты">
+      <change beforePath="$PROJECT_DIR$/.github/workflows/api-tests.yml" beforeDir="false" afterPath="$PROJECT_DIR$/.github/workflows/api-tests.yml" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -225,7 +227,15 @@
       <option name="project" value="LOCAL" />
       <updated>1733234250493</updated>
     </task>
-    <option name="localTasksCounter" value="15" />
+    <task id="LOCAL-00015" summary="ФЗ 6.1&#10;- В Node указать в качестве параметра неопределенный тип T;&#10;- Исправить методов remove() и removeNode() в InMemoryHistoryManager;&#10;- Добавить автотесты">
+      <option name="closed" value="true" />
+      <created>1733234705723</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1733234705723</updated>
+    </task>
+    <option name="localTasksCounter" value="16" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
