@@ -36,6 +36,7 @@ class InMemoryHistoryManagerTest {
                 ((InMemoryTaskManager) testManager).taskCount, TaskStatus.NEW, epic);
         testManager.addSubtask(subtask);
         ArrayList<Task> expectedHistoryList = new ArrayList<>(asList(subtask, epic, task));
+
         testManager.getEpic(2);     // 2
         testManager.getTask(1);     // 3
         testManager.getEpic(2);     // 4
