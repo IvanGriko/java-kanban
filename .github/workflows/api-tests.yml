@@ -1,4 +1,4 @@
-name: Java ru.yandex.taskmanager.Tests
+name: Java ru.yandex.taskmanager.test
 
 on:
   pull_request:

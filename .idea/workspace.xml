@@ -4,9 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="dec4f7ba-080c-4913-a420-5017c8352794" name="Changes" comment="ФЗ 6.1&#10;- В Node указать в качестве параметра неопределенный тип T;&#10;- Исправить методов remove() и removeNode() в InMemoryHistoryManager;&#10;- Добавить автотесты">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-    </list>
+    <list default="true" id="dec4f7ba-080c-4913-a420-5017c8352794" name="Changes" comment="ФЗ 6.1&#10;- В Node указать в качестве параметра неопределенный тип T;&#10;- Исправить методов remove() и removeNode() в InMemoryHistoryManager;&#10;- Добавить автотесты" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -211,7 +209,23 @@
       <option name="project" value="LOCAL" />
       <updated>1733233452121</updated>
     </task>
-    <option name="localTasksCounter" value="13" />
+    <task id="LOCAL-00013" summary="ФЗ 6.1&#10;- В Node указать в качестве параметра неопределенный тип T;&#10;- Исправить методов remove() и removeNode() в InMemoryHistoryManager;&#10;- Добавить автотесты">
+      <option name="closed" value="true" />
+      <created>1733234153320</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1733234153320</updated>
+    </task>
+    <task id="LOCAL-00014" summary="ФЗ 6.1&#10;- В Node указать в качестве параметра неопределенный тип T;&#10;- Исправить методов remove() и removeNode() в InMemoryHistoryManager;&#10;- Добавить автотесты">
+      <option name="closed" value="true" />
+      <created>1733234250493</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1733234250493</updated>
+    </task>
+    <option name="localTasksCounter" value="15" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
