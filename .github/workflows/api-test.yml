@@ -1,8 +1,0 @@
-name: Java ru.yandex.taskmanager.Tests
-
-on:
-  pull_request:
-
-jobs:
-  build:
-    uses: yandex-praktikum/java-kanban/.github/workflows/api-tests.yml@ci
