@@ -5,7 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="dec4f7ba-080c-4913-a420-5017c8352794" name="Changes" comment="ФЗ 6.1&#10;- В Node указать в качестве параметра неопределенный тип T;&#10;- Исправить методов remove() и removeNode() в InMemoryHistoryManager;&#10;- Добавить автотесты">
-      <change beforePath="$PROJECT_DIR$/.github/workflows/api-tests.yml" beforeDir="false" afterPath="$PROJECT_DIR$/.github/workflows/api-tests.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -235,7 +235,31 @@
       <option name="project" value="LOCAL" />
       <updated>1733234705723</updated>
     </task>
-    <option name="localTasksCounter" value="16" />
+    <task id="LOCAL-00016" summary="ФЗ 6.1&#10;- В Node указать в качестве параметра неопределенный тип T;&#10;- Исправить методов remove() и removeNode() в InMemoryHistoryManager;&#10;- Добавить автотесты">
+      <option name="closed" value="true" />
+      <created>1733235237015</created>
+      <option name="number" value="00016" />
+      <option name="presentableId" value="LOCAL-00016" />
+      <option name="project" value="LOCAL" />
+      <updated>1733235237015</updated>
+    </task>
+    <task id="LOCAL-00017" summary="ФЗ 6.1&#10;- В Node указать в качестве параметра неопределенный тип T;&#10;- Исправить методов remove() и removeNode() в InMemoryHistoryManager;&#10;- Добавить автотесты">
+      <option name="closed" value="true" />
+      <created>1733235479348</created>
+      <option name="number" value="00017" />
+      <option name="presentableId" value="LOCAL-00017" />
+      <option name="project" value="LOCAL" />
+      <updated>1733235479348</updated>
+    </task>
+    <task id="LOCAL-00018" summary="ФЗ 6.1&#10;- В Node указать в качестве параметра неопределенный тип T;&#10;- Исправить методов remove() и removeNode() в InMemoryHistoryManager;&#10;- Добавить автотесты">
+      <option name="closed" value="true" />
+      <created>1733235784305</created>
+      <option name="number" value="00018" />
+      <option name="presentableId" value="LOCAL-00018" />
+      <option name="project" value="LOCAL" />
+      <updated>1733235784305</updated>
+    </task>
+    <option name="localTasksCounter" value="19" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">

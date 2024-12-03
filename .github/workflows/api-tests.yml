@@ -1,4 +1,4 @@
-name: Java ru.yandex.tasktracker.test
+name: Java com.taskmanager.test
 
 on:
   pull_request:
