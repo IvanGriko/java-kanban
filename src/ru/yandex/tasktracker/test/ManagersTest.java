@@ -11,7 +11,7 @@ import ru.yandex.tasktracker.model.TaskStatus;
 class ManagersTest {
 
     @Test // утилитарный класс всегда возвращает проинициализированные и готовые к работе экземпляры менеджеров:
-    void getDefaultTaskManagerTest(){
+    void getDefaultTaskManagerTest() {
         Managers manager = new Managers();
         TaskManager taskManager = manager.getDefaultTaskManager();
         Task task = new Task("Name", "Description", 1, TaskStatus.NEW);
@@ -21,7 +21,7 @@ class ManagersTest {
     }
 
     @Test
-    void getDefaultHistoryTest(){
+    void getDefaultHistoryTest() {
         Managers manager = new Managers();
         TaskManager taskManager = manager.getDefaultTaskManager();
         HistoryManager historyManager = manager.getDefaultHistory();
