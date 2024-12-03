@@ -10,7 +10,7 @@ import ru.yandex.tasktracker.model.TaskStatus;
 
 class ManagersTest {
 
-    @Test // утилитарный класс всегда возвращает проинициализированные и готовые к работе экземпляры менеджеров:
+    @Test
     void getDefaultTaskManagerTest() {
         Managers manager = new Managers();
         TaskManager taskManager = manager.getDefaultTaskManager();

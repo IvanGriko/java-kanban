@@ -6,7 +6,6 @@ import ru.yandex.tasktracker.model.Task;
 import ru.yandex.tasktracker.service.InMemoryTaskManager;
 import ru.yandex.tasktracker.model.TaskStatus;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class Main {

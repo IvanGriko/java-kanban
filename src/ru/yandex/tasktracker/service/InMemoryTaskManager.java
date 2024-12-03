@@ -179,7 +179,6 @@ public class InMemoryTaskManager implements TaskManager {
         }
         epicsMap.remove(id);
         historyManager.remove(id);
-
     }
 
     // обновление статуса эпика
