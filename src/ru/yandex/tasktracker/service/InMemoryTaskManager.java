@@ -13,6 +13,7 @@ public class InMemoryTaskManager implements TaskManager {
     public int getTaskCount() {
         return taskCount;
     }
+
     private final Map<Integer, Task> tasksMap = new HashMap<>();
     private final Map<Integer, Subtask> subtasksMap = new HashMap<>();
     private final Map<Integer, Epic> epicsMap = new HashMap<>();
