@@ -13,6 +13,7 @@ public class InMemoryTaskManager implements TaskManager {
     public int getTaskCount() {
         return taskCount;
     }
+
     private final Map<Integer, Task> tasksMap = new HashMap<>();
     private final Map<Integer, Subtask> subtasksMap = new HashMap<>();
     private final Map<Integer, Epic> epicsMap = new HashMap<>();
@@ -28,6 +29,8 @@ public class InMemoryTaskManager implements TaskManager {
     // удаление всех задач
     @Override
     public void deleteTasks() {
+        for (Task task : tasksMap.values())
+            historyManager.remove(task.getId());
         tasksMap.clear();
     }
 
@@ -56,12 +59,14 @@ public class InMemoryTaskManager implements TaskManager {
     @Override
     public void removeTask(Task task) {
         tasksMap.remove(task.getId());
+        historyManager.remove(task.getId());
     }
 
     // удаление задачи по ID
     @Override
     public void removeTaskByID(int id) {
         tasksMap.remove(id);
+        historyManager.remove(id);
     }
 
     // получение списка подзадач
@@ -74,6 +79,8 @@ public class InMemoryTaskManager implements TaskManager {
     // удаление всех подзадач
     @Override
     public void deleteSubtasks() {
+        for (Subtask subtask : subtasksMap.values())
+            historyManager.remove(subtask.getId());
         subtasksMap.clear();
         for (Epic epic : epicsMap.values()) {
             epic.clearSubtasks();
@@ -109,6 +116,7 @@ public class InMemoryTaskManager implements TaskManager {
     public void removeSubtask(Subtask subtask) {
         subtasksMap.remove(subtask.getId());
         updateEpicStatus(getEpic(subtask.getEpic()));
+        historyManager.remove(subtask.getId());
     }
 
     // удаление подзадачи по ID
@@ -122,6 +130,7 @@ public class InMemoryTaskManager implements TaskManager {
         subtaskList.remove(subtask);
         epic.setSubtaskList(subtaskList);
         updateEpicStatus(epic);
+        historyManager.remove(id);
     }
 
     // получение списка эпиков
@@ -134,6 +143,8 @@ public class InMemoryTaskManager implements TaskManager {
     // удаление всех эпиков
     @Override
     public void deleteEpics() {
+        for (Epic epic : epicsMap.values())
+            historyManager.remove(epic.getId());
         epicsMap.clear();
         subtasksMap.clear();
     }
@@ -165,8 +176,10 @@ public class InMemoryTaskManager implements TaskManager {
         List<Subtask> epicSubtasks = getSubtasksByEpic(getEpic(id));
         for (Subtask subtask : epicSubtasks) {
             subtasksMap.remove(subtask.getId());
+            historyManager.remove(subtask.getId());
         }
         epicsMap.remove(id);
+        historyManager.remove(id);
     }
 
     // обновление статуса эпика

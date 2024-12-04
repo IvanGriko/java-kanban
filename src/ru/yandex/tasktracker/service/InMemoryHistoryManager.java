@@ -2,28 +2,74 @@ package ru.yandex.tasktracker.service;
 
 import ru.yandex.tasktracker.model.Task;
 
-import java.util.ArrayList;
+import java.util.*;
 
 public class InMemoryHistoryManager implements HistoryManager {
 
-    private ArrayList<Task> historyList = new ArrayList<>(10);
+    private Node<Task> head;
+    private Node<Task> tail;
+    private final Map<Integer, Node> historyMap = new HashMap<>();
+
+    private Node<Task> linkLast(Task task) {
+        final Node<Task> newNode;
+        final Node<Task> oldTail = tail;
+        newNode = new Node<>(oldTail, task, null);
+        tail = newNode;
+        if (oldTail == null) {
+            head = newNode;
+        } else {
+            oldTail.next = newNode;
+        }
+        Task t = newNode.task;
+        historyMap.put(t.getId(), newNode);
+        return newNode;
+    }
+
+    private List<Task> getTasks() {
+        List<Task> tasksList = new LinkedList<>();
+        Node<Task> node = head;
+        while (node != null) {
+            tasksList.add(node.task);
+            node = node.next;
+        }
+        return tasksList;
+    }
+
+    private void removeNode(Node node) {
+        if (node.next == null && node.prev == null) {
+            head = null;
+            tail = null;
+            node.task = null;
+        } else if (node == head) {
+            head = node.next;
+            node.task = null;
+        } else if (node == tail) {
+            tail = node.prev;
+            node.task = null;
+        } else if (node.prev != null && node.next != null) {
+            node.prev.next = node.next;
+        }
+    }
 
     @Override
     public void add(Task task) {
-        if (historyList.size() == 10) {
-            historyList.remove(0);
+        if (task != null) {
+            remove(task.getId());
+            linkLast(task);
         }
-        Task gotTask = new Task(task.getName(), task.getDescription(), task.getId(), task.getStatus());
-        historyList.add(gotTask);
     }
-    //        historyList.add(task);
-//        если просто добавлять задачу без создания копии текущей версии,
-//        то не проходит тест на разные версии объектов в истории:
-//        "Сохранена одна и та же версия задачи. ==> expected: <false> but was: <true>".
-//        Прошу меня направить на решение, если возможно.
 
     @Override
-    public ArrayList getHistory() {
-        return new ArrayList<>(historyList);
+    public void remove(Integer id) {
+        Node node = historyMap.get(id);
+        if (node != null) {
+            removeNode(node);
+            historyMap.remove(id);
+        }
+    }
+
+    @Override
+    public List<Task> getHistory() {
+        return getTasks();
     }
 }

@@ -18,7 +18,7 @@ class InMemoryTaskManagerTest {
     TaskManager testManager;
 
     @BeforeEach
-    public void initManager(){
+    public void initManager() {
         testManager = Managers.getDefaultTaskManager();
     }
 
@@ -41,7 +41,6 @@ class InMemoryTaskManagerTest {
         expectedTasks.add(testTask1);
         expectedTasks.add(testTask2);
         Assertions.assertEquals(expectedTasks, testManager.getTasks(), "Списки задач не совпадают");
-
     }
 
     @Test
