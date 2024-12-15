@@ -44,6 +44,10 @@ public class Task {
         return status;
     }
 
+    public TaskType getType(Task task) {
+        return TaskType.TASK;
+    }
+
     public void setStatus(TaskStatus status) {
         switch (status) {
             case TaskStatus.NEW:

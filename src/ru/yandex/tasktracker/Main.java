@@ -1,5 +1,6 @@
 package ru.yandex.tasktracker;
 import org.junit.jupiter.api.Assertions;
+import ru.yandex.tasktracker.exceptions.ManagerSaveException;
 import ru.yandex.tasktracker.model.Epic;
 import ru.yandex.tasktracker.model.Subtask;
 import ru.yandex.tasktracker.model.Task;
@@ -9,7 +10,7 @@ import ru.yandex.tasktracker.model.TaskStatus;
 import java.util.List;
 
 public class Main {
-    public static void main(String[] args) {
+    public static void main(String[] args) throws ManagerSaveException {
 
         InMemoryTaskManager manager = new InMemoryTaskManager();
 

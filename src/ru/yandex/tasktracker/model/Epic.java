@@ -18,6 +18,10 @@ public class Epic extends Task {
         this.subtaskList = subtaskList;
     }
 
+    public TaskType getType(Epic epic) {
+        return TaskType.EPIC;
+    }
+
     public void clearSubtasks() {
         subtaskList.clear();
     }

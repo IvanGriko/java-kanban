@@ -20,6 +20,10 @@ public class Subtask extends Task {
         return this.epic.getId();
     }
 
+    public TaskType getType(Subtask subtask) {
+        return TaskType.SUBTASK;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
