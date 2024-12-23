@@ -102,7 +102,7 @@ public class FileBackedTaskManager extends InMemoryTaskManager {
     private Task taskFromString(String line) throws ManagerSaveException, IOException {
         Task task = null;
         String[] str = line.split(",");
-        if ((str.length)>1) {
+        if ((str.length) > 1) {
             switch (TaskType.valueOf(str[1])) {
                 case TASK:
                     int id = Integer.parseInt(str[0]);
