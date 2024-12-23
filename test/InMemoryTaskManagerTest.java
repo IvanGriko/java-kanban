@@ -10,6 +10,7 @@ import ru.yandex.tasktracker.service.InMemoryTaskManager;
 import ru.yandex.tasktracker.service.Managers;
 import ru.yandex.tasktracker.service.TaskManager;
 import ru.yandex.tasktracker.model.TaskStatus;
+import ru.yandex.tasktracker.exceptions.ManagerSaveException;
 
 import java.util.ArrayList;
 
@@ -23,14 +24,14 @@ class InMemoryTaskManagerTest {
     }
 
     @Test
-    void tasksIsEqualsIfIDsIsEquals() {
+    void tasksIsEqualsIfIDsIsEquals() throws ManagerSaveException {
         Task testTask1 = new Task("Задача1", "Первая задача", 1, TaskStatus.NEW);
         Task testTask2 = new Task("Задача2", "Вторая задача", 1, TaskStatus.NEW);
         Assertions.assertEquals(testTask1, testTask2, "Задачи не равны");
     }
 
     @Test
-    void getTasksTest() {
+    void getTasksTest() throws ManagerSaveException {
         Task testTask1 = new Task("Задача1", "Первая задача",
                 ((InMemoryTaskManager) testManager).taskCount, TaskStatus.NEW);
         testManager.addTask(testTask1);
@@ -44,7 +45,7 @@ class InMemoryTaskManagerTest {
     }
 
     @Test
-    void deleteTasksTest() {
+    void deleteTasksTest() throws ManagerSaveException {
         Task testTask1 = new Task("Задача1", "Первая задача",
                 ((InMemoryTaskManager) testManager).taskCount, TaskStatus.NEW);
         testManager.addTask(testTask1);
@@ -56,7 +57,7 @@ class InMemoryTaskManagerTest {
     }
 
     @Test
-    void getTaskTest() {
+    void getTaskTest() throws ManagerSaveException {
         Task testTask1 = new Task("Задача1", "Первая задача",
                 ((InMemoryTaskManager) testManager).taskCount, TaskStatus.NEW);
         testManager.addTask(testTask1);
@@ -64,7 +65,7 @@ class InMemoryTaskManagerTest {
     }
 
     @Test
-    void addTaskTest() {
+    void addTaskTest() throws ManagerSaveException {
         Task testTask1 = new Task("Задача1", "Первая задача",
                 ((InMemoryTaskManager) testManager).taskCount, TaskStatus.NEW);
         testManager.addTask(testTask1);
@@ -72,7 +73,7 @@ class InMemoryTaskManagerTest {
     }
 
     @Test
-    void updateTaskTest() {
+    void updateTaskTest() throws ManagerSaveException {
         Task testTask1 = new Task("Задача1", "Первая задача",
                 ((InMemoryTaskManager) testManager).taskCount, TaskStatus.NEW);
         testManager.addTask(testTask1);
@@ -87,7 +88,7 @@ class InMemoryTaskManagerTest {
     }
 
     @Test
-    void removeTaskTest() {
+    void removeTaskTest() throws ManagerSaveException {
         Task testTask1 = new Task("Задача1", "Первая задача",
                 ((InMemoryTaskManager) testManager).taskCount, TaskStatus.NEW);
         testManager.addTask(testTask1);
@@ -97,7 +98,7 @@ class InMemoryTaskManagerTest {
     }
 
     @Test
-    void removeTaskByIDTest() {
+    void removeTaskByIDTest() throws ManagerSaveException {
         Task testTask1 = new Task("Задача1", "Первая задача",
                 ((InMemoryTaskManager) testManager).taskCount, TaskStatus.NEW);
         testManager.addTask(testTask1);
@@ -107,7 +108,7 @@ class InMemoryTaskManagerTest {
     }
 
     @Test
-    void getSubtasksTest() {
+    void getSubtasksTest() throws ManagerSaveException {
         Epic epic1 = new Epic("Эпик1", "Первый эпик",
                 ((InMemoryTaskManager) testManager).taskCount);
         testManager.addEpic(epic1);
@@ -128,7 +129,7 @@ class InMemoryTaskManagerTest {
     }
 
     @Test
-    void subtasksIsEqualsIfIDsIsEqualsTest() {
+    void subtasksIsEqualsIfIDsIsEqualsTest() throws ManagerSaveException {
         Epic epic1 = new Epic("Эпик1", "Первый эпик", 1);
         Epic epic2 = new Epic("Эпик2", "Второй эпик", 1);
         Task testSubtask1 = new Subtask("Подзадача1", "Первая подзадача",
@@ -139,7 +140,7 @@ class InMemoryTaskManagerTest {
     }
 
     @Test
-    void deleteSubtasksTest() {
+    void deleteSubtasksTest() throws ManagerSaveException {
         Epic epic1 = new Epic("Эпик1", "Первый эпик",
                 ((InMemoryTaskManager) testManager).taskCount);
         testManager.addEpic(epic1);
@@ -155,7 +156,7 @@ class InMemoryTaskManagerTest {
     }
 
     @Test
-    void getSubtaskTest() {
+    void getSubtaskTest() throws ManagerSaveException {
         Epic epic1 = new Epic("Эпик1", "Первый эпик",
                 ((InMemoryTaskManager) testManager).taskCount);
         testManager.addEpic(epic1);
@@ -167,7 +168,7 @@ class InMemoryTaskManagerTest {
     }
 
     @Test
-    void addSubtaskTest() {
+    void addSubtaskTest() throws ManagerSaveException {
         Epic epic1 = new Epic("Эпик1", "Первый эпик",
                 ((InMemoryTaskManager) testManager).taskCount);
         testManager.addEpic(epic1);
@@ -179,7 +180,7 @@ class InMemoryTaskManagerTest {
     }
 
     @Test
-    void updateSubtaskTest() {
+    void updateSubtaskTest() throws ManagerSaveException {
         Epic epic1 = new Epic("Эпик1", "Первый эпик",
                 ((InMemoryTaskManager) testManager).taskCount);
         testManager.addEpic(epic1);
@@ -196,7 +197,7 @@ class InMemoryTaskManagerTest {
     }
 
     @Test
-    void removeSubtaskTest() {
+    void removeSubtaskTest() throws ManagerSaveException {
         Epic epic1 = new Epic("Эпик1", "Первый эпик",
                 ((InMemoryTaskManager) testManager).taskCount);
         testManager.addEpic(epic1);
@@ -209,7 +210,7 @@ class InMemoryTaskManagerTest {
     }
 
     @Test
-    void removeSubtaskByIDTest() {
+    void removeSubtaskByIDTest() throws ManagerSaveException {
         Epic epic1 = new Epic("Эпик1", "Первый эпик",
                 ((InMemoryTaskManager) testManager).taskCount);
         testManager.addEpic(epic1);
@@ -222,7 +223,7 @@ class InMemoryTaskManagerTest {
     }
 
     @Test
-    void getEpicsTest() {
+    void getEpicsTest() throws ManagerSaveException {
         Epic epic1 = new Epic("Эпик1", "Первый эпик",
                 ((InMemoryTaskManager) testManager).taskCount);
         testManager.addEpic(epic1);
@@ -237,7 +238,7 @@ class InMemoryTaskManagerTest {
     }
 
     @Test
-    void epicsIsEqualsIfIDsIsEqualsTest() {
+    void epicsIsEqualsIfIDsIsEqualsTest() throws ManagerSaveException {
         Epic epic1 = new Epic("Эпик1", "Первый эпик", 1);
         Epic epic2 = new Epic("Эпик2", "Второй эпик", 2);
         Task testSubtask1 = new Subtask("Подзадача1", "Первая подзадача",
@@ -248,7 +249,7 @@ class InMemoryTaskManagerTest {
     }
 
     @Test
-    void deleteEpicsTest() {
+    void deleteEpicsTest() throws ManagerSaveException {
         Epic epic1 = new Epic("Эпик1", "Первый эпик",
                 ((InMemoryTaskManager) testManager).taskCount);
         testManager.addEpic(epic1);
@@ -261,7 +262,7 @@ class InMemoryTaskManagerTest {
     }
 
     @Test
-    void getEpicTest() {
+    void getEpicTest() throws ManagerSaveException {
         Epic epic1 = new Epic("Эпик1", "Первый эпик",
                 ((InMemoryTaskManager) testManager).taskCount);
         testManager.addEpic(epic1);
@@ -270,7 +271,7 @@ class InMemoryTaskManagerTest {
     }
 
     @Test
-    void addEpicTest() {
+    void addEpicTest() throws ManagerSaveException {
         Epic epic1 = new Epic("Эпик1", "Первый эпик",
                 ((InMemoryTaskManager) testManager).taskCount);
         testManager.addEpic(epic1);
@@ -279,7 +280,7 @@ class InMemoryTaskManagerTest {
     }
 
     @Test
-    void updateEpicTest() {
+    void updateEpicTest() throws ManagerSaveException {
         Epic epic1 = new Epic("Эпик1", "Первый эпик",
                 ((InMemoryTaskManager) testManager).taskCount);
         testManager.addEpic(epic1);
@@ -297,7 +298,7 @@ class InMemoryTaskManagerTest {
     }
 
     @Test
-    void removeEpicTest() {
+    void removeEpicTest() throws ManagerSaveException {
         Epic epic1 = new Epic("Эпик1", "Первый эпик",
                 ((InMemoryTaskManager) testManager).taskCount);
         testManager.addEpic(epic1);
@@ -311,7 +312,7 @@ class InMemoryTaskManagerTest {
     }
 
     @Test
-    void updateEpicStatusTest() {
+    void updateEpicStatusTest() throws ManagerSaveException {
         Epic epic1 = new Epic("Эпик1", "Первый эпик",
                 ((InMemoryTaskManager) testManager).taskCount);
         testManager.addEpic(epic1);
@@ -327,7 +328,7 @@ class InMemoryTaskManagerTest {
     }
 
     @Test
-    void getSubtasksByEpicTest() {
+    void getSubtasksByEpicTest() throws ManagerSaveException {
         Epic epic1 = new Epic("Эпик1", "Первый эпик",
                 ((InMemoryTaskManager) testManager).taskCount);
         testManager.addEpic(epic1);
