@@ -1,6 +1,5 @@
 package ru.yandex.tasktracker.service;
 
-import ru.yandex.tasktracker.exceptions.ManagerSaveException;
 import ru.yandex.tasktracker.model.Epic;
 import ru.yandex.tasktracker.model.Subtask;
 import ru.yandex.tasktracker.model.Task;
@@ -16,21 +15,20 @@ public class InMemoryTaskManager implements TaskManager {
         return taskCount;
     }
 
-    private final Map<Integer, Task> tasksMap = new HashMap<>();
-    private final Map<Integer, Subtask> subtasksMap = new HashMap<>();
-    private final Map<Integer, Epic> epicsMap = new HashMap<>();
+    final Map<Integer, Task> tasksMap = new HashMap<>();
+    final Map<Integer, Subtask> subtasksMap = new HashMap<>();
+    final Map<Integer, Epic> epicsMap = new HashMap<>();
     private final HistoryManager historyManager = new InMemoryHistoryManager();
 
     // получение списка задач
     @Override
-    public List<Task> getTasks() throws ManagerSaveException {
-        List<Task> tasksList = new ArrayList<>(tasksMap.values());
-        return tasksList;
+    public List<Task> getTasks() {
+        return new ArrayList<>(tasksMap.values());
     }
 
     // удаление всех задач
     @Override
-    public void deleteTasks() throws ManagerSaveException {
+    public void deleteTasks() {
         for (Task task : tasksMap.values())
             historyManager.remove(task.getId());
         tasksMap.clear();
@@ -38,7 +36,7 @@ public class InMemoryTaskManager implements TaskManager {
 
     // получение задачи по ID
     @Override
-    public Task getTask(int id) throws ManagerSaveException {
+    public Task getTask(int id) {
         Task task = tasksMap.get(id);
         historyManager.add(task);
         return task;
@@ -46,41 +44,40 @@ public class InMemoryTaskManager implements TaskManager {
 
     // добавление задачи
     @Override
-    public void addTask(Task task) throws ManagerSaveException {
+    public void addTask(Task task) {
         tasksMap.put(task.getId(), task);
         taskCount++;
     }
 
     // обновление задачи
     @Override
-    public void updateTask(Task task) throws ManagerSaveException {
+    public void updateTask(Task task) {
         tasksMap.replace(task.getId(), task);
     }
 
     // удаление задачи
     @Override
-    public void removeTask(Task task) throws ManagerSaveException {
+    public void removeTask(Task task) {
         tasksMap.remove(task.getId());
         historyManager.remove(task.getId());
     }
 
     // удаление задачи по ID
     @Override
-    public void removeTaskByID(int id) throws ManagerSaveException {
+    public void removeTaskByID(int id) {
         tasksMap.remove(id);
         historyManager.remove(id);
     }
 
     // получение списка подзадач
     @Override
-    public List<Subtask> getSubtasks() throws ManagerSaveException {
-        List<Subtask> subtasksList = new ArrayList<>(subtasksMap.values());
-        return subtasksList;
+    public List<Subtask> getSubtasks() {
+        return new ArrayList<>(subtasksMap.values());
     }
 
     // удаление всех подзадач
     @Override
-    public void deleteSubtasks() throws ManagerSaveException {
+    public void deleteSubtasks() {
         for (Subtask subtask : subtasksMap.values())
             historyManager.remove(subtask.getId());
         subtasksMap.clear();
@@ -92,7 +89,7 @@ public class InMemoryTaskManager implements TaskManager {
 
     // получение подзадачи по ID
     @Override
-    public Subtask getSubtask(int id) throws ManagerSaveException {
+    public Subtask getSubtask(int id) {
         Subtask subtask = subtasksMap.get(id);
         historyManager.add(subtask);
         return subtask;
@@ -100,7 +97,7 @@ public class InMemoryTaskManager implements TaskManager {
 
     // добавление подзадачи
     @Override
-    public void addSubtask(Subtask subtask) throws ManagerSaveException {
+    public void addSubtask(Subtask subtask) {
         subtasksMap.put(subtask.getId(), subtask);
         taskCount++;
         updateEpicStatus(getEpic(subtask.getEpic()));
@@ -108,14 +105,14 @@ public class InMemoryTaskManager implements TaskManager {
 
     // обновление подзадачи
     @Override
-    public void updateSubtask(Subtask subtask) throws ManagerSaveException {
+    public void updateSubtask(Subtask subtask) {
         subtasksMap.replace(subtask.getId(), subtask);
         updateEpicStatus(getEpic(subtask.getEpic()));
     }
 
     // удаление подзадачи
     @Override
-    public void removeSubtask(Subtask subtask) throws ManagerSaveException {
+    public void removeSubtask(Subtask subtask) {
         subtasksMap.remove(subtask.getId());
         updateEpicStatus(getEpic(subtask.getEpic()));
         historyManager.remove(subtask.getId());
@@ -123,7 +120,7 @@ public class InMemoryTaskManager implements TaskManager {
 
     // удаление подзадачи по ID
     @Override
-    public void removeSubtaskByID(int id) throws ManagerSaveException {
+    public void removeSubtaskByID(int id) {
         Subtask subtask = subtasksMap.get(id);
         int epicID = subtask.getEpic();
         subtasksMap.remove(id);
@@ -137,14 +134,13 @@ public class InMemoryTaskManager implements TaskManager {
 
     // получение списка эпиков
     @Override
-    public List<Epic> getEpics() throws ManagerSaveException {
-        List<Epic> epicsList = new ArrayList<>(epicsMap.values());
-        return epicsList;
+    public List<Epic> getEpics() {
+        return new ArrayList<>(epicsMap.values());
     }
 
     // удаление всех эпиков
     @Override
-    public void deleteEpics() throws ManagerSaveException {
+    public void deleteEpics() {
         for (Epic epic : epicsMap.values())
             historyManager.remove(epic.getId());
         epicsMap.clear();
@@ -153,7 +149,7 @@ public class InMemoryTaskManager implements TaskManager {
 
     // получение эпика по ID
     @Override
-    public Epic getEpic(int id) throws ManagerSaveException {
+    public Epic getEpic(int id) {
         Epic epic = epicsMap.get(id);
         historyManager.add(epic);
         return epic;
@@ -161,20 +157,20 @@ public class InMemoryTaskManager implements TaskManager {
 
     // добавление эпика
     @Override
-    public void addEpic(Epic epic) throws ManagerSaveException {
+    public void addEpic(Epic epic) {
         epicsMap.put(epic.getId(), epic);
         taskCount++;
     }
 
     // обновление эпика
     @Override
-    public void updateEpic(Epic epic) throws ManagerSaveException {
+    public void updateEpic(Epic epic) {
         epicsMap.replace(epic.getId(), epic);
     }
 
     // удаление эпика по ID
     @Override
-    public void removeEpic(int id) throws ManagerSaveException {
+    public void removeEpic(int id) {
         List<Subtask> epicSubtasks = getSubtasksByEpic(getEpic(id));
         for (Subtask subtask : epicSubtasks) {
             subtasksMap.remove(subtask.getId());
@@ -186,7 +182,7 @@ public class InMemoryTaskManager implements TaskManager {
 
     // обновление статуса эпика
     @Override
-    public void updateEpicStatus(Epic epic) throws ManagerSaveException {
+    public void updateEpicStatus(Epic epic) {
         int isDoneCount = 0;
         int isNewCount = 0;
         List<Subtask> list = getSubtasksByEpic(epic);
@@ -211,7 +207,7 @@ public class InMemoryTaskManager implements TaskManager {
 
     // Получение списка всех подзадач определённого эпика
     @Override
-    public List<Subtask> getSubtasksByEpic(Epic epic) throws ManagerSaveException {
+    public List<Subtask> getSubtasksByEpic(Epic epic) {
         List<Subtask> subtasksList = new ArrayList<>(subtasksMap.values());
         ArrayList<Subtask> subtasksListByEpic = new ArrayList<>();
         for (Subtask subt : subtasksList) {

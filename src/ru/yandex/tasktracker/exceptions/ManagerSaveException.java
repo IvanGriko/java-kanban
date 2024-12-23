@@ -1,6 +1,6 @@
 package ru.yandex.tasktracker.exceptions;
 
-public class ManagerSaveException extends Exception {
+public class ManagerSaveException extends RuntimeException {
 
     private final String message = "Input error";
 

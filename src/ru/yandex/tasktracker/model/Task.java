@@ -65,8 +65,7 @@ public class Task {
     }
 
     public String toString() {
-        return "\n" + "Задача. Название: " + name + ", Описание: " + description +
-                ", Статус: " + getStatus() + ", id " + id;
+        return id + ",TASK," + name + "," + getStatus() + "," + description + "\n";
     }
 
     public boolean equals(Object o) {

@@ -5,14 +5,9 @@ import java.util.Objects;
 
 public class Epic extends Task {
     protected ArrayList<Subtask> subtaskList = new ArrayList<>();
-    protected TaskType type = TaskType.EPIC;
 
     public ArrayList<Subtask> getSubtaskList() {
         return subtaskList;
-    }
-
-    public String getName() {
-        return name;
     }
 
     public void setSubtaskList(ArrayList<Subtask> subtaskList) {
@@ -39,8 +34,7 @@ public class Epic extends Task {
 
     @Override
     public String toString() {
-        return "\nЭпик. Название: " + name + ", Описание: " + description +
-                ", Статус: " + getStatus() + ", " + "id " + id;
+        return id + ",EPIC," + name + "," + getStatus() + "," + description + "\n";
     }
 
     @Override

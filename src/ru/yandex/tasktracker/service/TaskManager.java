@@ -1,6 +1,5 @@
 package ru.yandex.tasktracker.service;
 
-import ru.yandex.tasktracker.exceptions.ManagerSaveException;
 import ru.yandex.tasktracker.model.Epic;
 import ru.yandex.tasktracker.model.Subtask;
 import ru.yandex.tasktracker.model.Task;
@@ -9,72 +8,71 @@ import java.util.List;
 
 public interface TaskManager {
 
-
     // получение списка задач
-    List getTasks() throws ManagerSaveException;
+    List getTasks();
 
     // удаление всех задач
-    void deleteTasks() throws ManagerSaveException;
+    void deleteTasks();
 
     // получение задачи по ID
-    Task getTask(int id) throws ManagerSaveException;
+    Task getTask(int id);
 
     // добавление задачи
-    void addTask(Task task) throws ManagerSaveException;
+    void addTask(Task task);
 
     // обновление задачи
-    void updateTask(Task task) throws ManagerSaveException;
+    void updateTask(Task task);
 
     // удаление задачи
-    void removeTask(Task task) throws ManagerSaveException;
+    void removeTask(Task task);
 
     // удаление задачи по ID
-    void removeTaskByID(int id) throws ManagerSaveException;
+    void removeTaskByID(int id);
 
     // получение списка подзадач
-    List getSubtasks() throws ManagerSaveException;
+    List getSubtasks();
 
     // удаление всех подзадач
-    void deleteSubtasks() throws ManagerSaveException;
+    void deleteSubtasks();
 
     // получение подзадачи по ID
-    Subtask getSubtask(int id) throws ManagerSaveException;
+    Subtask getSubtask(int id);
 
     // добавление подзадачи
-    void addSubtask(Subtask subtask) throws ManagerSaveException;
+    void addSubtask(Subtask subtask);
 
     // обновление подзадачи
-    void updateSubtask(Subtask subtask) throws ManagerSaveException;
+    void updateSubtask(Subtask subtask);
 
     // удаление подзадачи
-    void removeSubtask(Subtask subtask) throws ManagerSaveException;
+    void removeSubtask(Subtask subtask);
 
     // удаление подзадачи по ID
-    void removeSubtaskByID(int id) throws ManagerSaveException;
+    void removeSubtaskByID(int id);
 
     // получение списка эпиков
-    List getEpics() throws ManagerSaveException;
+    List getEpics();
 
     // удаление всех эпиков
-    void deleteEpics() throws ManagerSaveException;
+    void deleteEpics();
 
     // получение эпика по ID
-    Epic getEpic(int id) throws ManagerSaveException;
+    Epic getEpic(int id);
 
     // добавление эпика
-    void addEpic(Epic epic) throws ManagerSaveException;
+    void addEpic(Epic epic);
 
     // обновление эпика
-    void updateEpic(Epic epic) throws ManagerSaveException;
+    void updateEpic(Epic epic);
 
     // удаление эпика по ID
-    void removeEpic(int id) throws ManagerSaveException;
+    void removeEpic(int id);
 
     // обновление статуса эпика
-    void updateEpicStatus(Epic epic) throws ManagerSaveException;
+    void updateEpicStatus(Epic epic);
 
     // Получение списка всех подзадач определённого эпика
-    List<Subtask> getSubtasksByEpic(Epic epic) throws ManagerSaveException;
+    List<Subtask> getSubtasksByEpic(Epic epic);
 
     List getHistory();
 }
