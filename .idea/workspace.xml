@@ -5,7 +5,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="dec4f7ba-080c-4913-a420-5017c8352794" name="Changes" comment="ФЗ 7.&#10;Добавить реализацию бекенда через запись данных в файл и восстановление из файла.">
-      <change beforePath="$PROJECT_DIR$/src/ru/yandex/tasktracker/service/FileBackedTaskManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ru/yandex/tasktracker/service/FileBackedTaskManager.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/test/InMemoryHistoryManagerTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/test/InMemoryHistoryManagerTest.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -290,7 +291,15 @@
       <option name="project" value="LOCAL" />
       <updated>1734954077018</updated>
     </task>
-    <option name="localTasksCounter" value="22" />
+    <task id="LOCAL-00022" summary="ФЗ 7.&#10;Добавить реализацию бекенда через запись данных в файл и восстановление из файла.">
+      <option name="closed" value="true" />
+      <created>1734956288491</created>
+      <option name="number" value="00022" />
+      <option name="presentableId" value="LOCAL-00022" />
+      <option name="project" value="LOCAL" />
+      <updated>1734956288491</updated>
+    </task>
+    <option name="localTasksCounter" value="23" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">

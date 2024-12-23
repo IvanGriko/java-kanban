@@ -10,6 +10,7 @@ import ru.yandex.tasktracker.service.InMemoryTaskManager;
 import ru.yandex.tasktracker.service.Managers;
 import ru.yandex.tasktracker.service.TaskManager;
 import ru.yandex.tasktracker.model.TaskStatus;
+import ru.yandex.tasktracker.exceptions.ManagerSaveException;
 
 import java.util.ArrayList;
 
@@ -25,7 +26,7 @@ class InMemoryHistoryManagerTest {
     }
 
     @Test
-    void getHistoryTest() {
+    void getHistoryTest() throws ManagerSaveException {
         Task task = new Task("Задача", "Тестовая",
                 ((InMemoryTaskManager) testManager).taskCount, TaskStatus.NEW);
         testManager.addTask(task);
