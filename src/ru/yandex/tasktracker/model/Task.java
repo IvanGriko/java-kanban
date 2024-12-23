@@ -44,7 +44,7 @@ public class Task {
         return status;
     }
 
-    public TaskType getType(Task task) {
+    public TaskType getType() {
         return TaskType.TASK;
     }
 

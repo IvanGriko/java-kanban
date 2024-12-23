@@ -20,7 +20,8 @@ public class Subtask extends Task {
         return this.epic.getId();
     }
 
-    public TaskType getType(Subtask subtask) {
+    @Override
+    public TaskType getType() {
         return TaskType.SUBTASK;
     }
 

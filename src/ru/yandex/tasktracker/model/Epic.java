@@ -5,6 +5,7 @@ import java.util.Objects;
 
 public class Epic extends Task {
     protected ArrayList<Subtask> subtaskList = new ArrayList<>();
+    protected TaskType type = TaskType.EPIC;
 
     public ArrayList<Subtask> getSubtaskList() {
         return subtaskList;
@@ -18,7 +19,8 @@ public class Epic extends Task {
         this.subtaskList = subtaskList;
     }
 
-    public TaskType getType(Epic epic) {
+    @Override
+    public TaskType getType() {
         return TaskType.EPIC;
     }
 
