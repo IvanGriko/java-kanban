@@ -7,8 +7,9 @@ import ru.yandex.tasktracker.service.HistoryManager;
 import ru.yandex.tasktracker.service.Managers;
 import ru.yandex.tasktracker.service.TaskManager;
 import ru.yandex.tasktracker.model.TaskStatus;
+import ru.yandex.tasktracker.exceptions.ManagerSaveException;
 
-class ManagersTest {
+class ManagersTest throws ManagerSaveException {
 
     @Test
     void getDefaultTaskManagerTest() {
