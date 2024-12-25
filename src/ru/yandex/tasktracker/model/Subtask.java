@@ -12,12 +12,16 @@ public class Subtask extends Task {
 
     @Override
     public String toString() {
-        return  "\n" + "Подзадача. Название: " + name + ", Описание: " + description +
-                ", Статус: " + getStatus() + ", id " + id;
+        return id + ",SUBTASK," + name + "," + getStatus() + "," + description + "," + getEpic() + "\n";
     }
 
     public int getEpic() {
         return this.epic.getId();
+    }
+
+    @Override
+    public TaskType getType() {
+        return TaskType.SUBTASK;
     }
 
     @Override

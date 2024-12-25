@@ -8,7 +8,6 @@ import java.util.List;
 
 public interface TaskManager {
 
-
     // получение списка задач
     List getTasks();
 

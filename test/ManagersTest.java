@@ -7,11 +7,12 @@ import ru.yandex.tasktracker.service.HistoryManager;
 import ru.yandex.tasktracker.service.Managers;
 import ru.yandex.tasktracker.service.TaskManager;
 import ru.yandex.tasktracker.model.TaskStatus;
+import ru.yandex.tasktracker.exceptions.ManagerSaveException;
 
 class ManagersTest {
 
     @Test
-    void getDefaultTaskManagerTest() {
+    void getDefaultTaskManagerTest() throws ManagerSaveException {
         Managers manager = new Managers();
         TaskManager taskManager = manager.getDefaultTaskManager();
         Task task = new Task("Name", "Description", 1, TaskStatus.NEW);
@@ -21,7 +22,7 @@ class ManagersTest {
     }
 
     @Test
-    void getDefaultHistoryTest() {
+    void getDefaultHistoryTest() throws ManagerSaveException {
         Managers manager = new Managers();
         TaskManager taskManager = manager.getDefaultTaskManager();
         HistoryManager historyManager = manager.getDefaultHistory();
@@ -35,7 +36,7 @@ class ManagersTest {
     }
 
     @Test // проверяется неизменность задачи (по всем полям) при добавлении задачи в менеджер
-    void variablesAreSameAfterAddingTaskToManager() {
+    void variablesAreSameAfterAddingTaskToManager() throws ManagerSaveException {
         Task task = new Task("Name", "Description", 1, TaskStatus.NEW);
         TaskManager taskManager = Managers.getDefaultTaskManager();
         taskManager.addTask(task);

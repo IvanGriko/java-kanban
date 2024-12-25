@@ -44,6 +44,10 @@ public class Task {
         return status;
     }
 
+    public TaskType getType() {
+        return TaskType.TASK;
+    }
+
     public void setStatus(TaskStatus status) {
         switch (status) {
             case TaskStatus.NEW:
@@ -61,8 +65,7 @@ public class Task {
     }
 
     public String toString() {
-        return "\n" + "Задача. Название: " + name + ", Описание: " + description +
-                ", Статус: " + getStatus() + ", id " + id;
+        return id + ",TASK," + name + "," + getStatus() + "," + description + "\n";
     }
 
     public boolean equals(Object o) {

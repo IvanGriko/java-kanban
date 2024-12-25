@@ -10,12 +10,13 @@ public class Epic extends Task {
         return subtaskList;
     }
 
-    public String getName() {
-        return name;
-    }
-
     public void setSubtaskList(ArrayList<Subtask> subtaskList) {
         this.subtaskList = subtaskList;
+    }
+
+    @Override
+    public TaskType getType() {
+        return TaskType.EPIC;
     }
 
     public void clearSubtasks() {
@@ -33,8 +34,7 @@ public class Epic extends Task {
 
     @Override
     public String toString() {
-        return "\nЭпик. Название: " + name + ", Описание: " + description +
-                ", Статус: " + getStatus() + ", " + "id " + id;
+        return id + ",EPIC," + name + "," + getStatus() + "," + description + "\n";
     }
 
     @Override

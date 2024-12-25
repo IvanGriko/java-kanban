@@ -1,4 +1,5 @@
 package ru.yandex.tasktracker.service;
+
 import ru.yandex.tasktracker.model.Epic;
 import ru.yandex.tasktracker.model.Subtask;
 import ru.yandex.tasktracker.model.Task;
@@ -14,16 +15,15 @@ public class InMemoryTaskManager implements TaskManager {
         return taskCount;
     }
 
-    private final Map<Integer, Task> tasksMap = new HashMap<>();
-    private final Map<Integer, Subtask> subtasksMap = new HashMap<>();
-    private final Map<Integer, Epic> epicsMap = new HashMap<>();
+    final Map<Integer, Task> tasksMap = new HashMap<>();
+    final Map<Integer, Subtask> subtasksMap = new HashMap<>();
+    final Map<Integer, Epic> epicsMap = new HashMap<>();
     private final HistoryManager historyManager = new InMemoryHistoryManager();
 
     // получение списка задач
     @Override
-    public List getTasks() {
-        List<Task> tasksList = new ArrayList<>(tasksMap.values());
-        return tasksList;
+    public List<Task> getTasks() {
+        return new ArrayList<>(tasksMap.values());
     }
 
     // удаление всех задач
@@ -71,9 +71,8 @@ public class InMemoryTaskManager implements TaskManager {
 
     // получение списка подзадач
     @Override
-    public List getSubtasks() {
-        List<Subtask> subtasksList = new ArrayList<>(subtasksMap.values());
-        return subtasksList;
+    public List<Subtask> getSubtasks() {
+        return new ArrayList<>(subtasksMap.values());
     }
 
     // удаление всех подзадач
@@ -135,9 +134,8 @@ public class InMemoryTaskManager implements TaskManager {
 
     // получение списка эпиков
     @Override
-    public List getEpics() {
-        List<Epic> epicsList = new ArrayList<>(epicsMap.values());
-        return epicsList;
+    public List<Epic> getEpics() {
+        return new ArrayList<>(epicsMap.values());
     }
 
     // удаление всех эпиков
@@ -222,7 +220,7 @@ public class InMemoryTaskManager implements TaskManager {
     }
 
     @Override
-    public List getHistory() {
+    public List<Task> getHistory() {
         return historyManager.getHistory();
     }
 }

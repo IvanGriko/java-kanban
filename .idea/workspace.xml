@@ -4,8 +4,16 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="dec4f7ba-080c-4913-a420-5017c8352794" name="Changes" comment="ФЗ 6.1&#10;- В Node указать в качестве параметра неопределенный тип T;&#10;- Исправить методов remove() и removeNode() в InMemoryHistoryManager;&#10;- Добавить автотесты">
+    <list default="true" id="dec4f7ba-080c-4913-a420-5017c8352794" name="Changes" comment="ФЗ 7.&#10;Добавить реализацию бекенда через запись данных в файл и восстановление из файла.">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/ru/yandex/tasktracker/exceptions/ManagerSaveException.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ru/yandex/tasktracker/exceptions/ManagerSaveException.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/ru/yandex/tasktracker/model/Epic.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ru/yandex/tasktracker/model/Epic.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/ru/yandex/tasktracker/model/Subtask.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ru/yandex/tasktracker/model/Subtask.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/ru/yandex/tasktracker/model/Task.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ru/yandex/tasktracker/model/Task.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/ru/yandex/tasktracker/service/FileBackedTaskManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ru/yandex/tasktracker/service/FileBackedTaskManager.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/ru/yandex/tasktracker/service/InMemoryTaskManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ru/yandex/tasktracker/service/InMemoryTaskManager.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/ru/yandex/tasktracker/service/Managers.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ru/yandex/tasktracker/service/Managers.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/ru/yandex/tasktracker/service/TaskManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ru/yandex/tasktracker/service/TaskManager.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -15,18 +23,18 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="Enum" />
         <option value="Interface" />
         <option value="AnnotationType" />
-        <option value="JUnit5 Test Class" />
+        <option value="Enum" />
         <option value="Class" />
+        <option value="JUnit5 Test Class" />
       </list>
     </option>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$" value="main" />
+        <entry key="$PROJECT_DIR$" value="sprint_6-solution" />
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -67,7 +75,8 @@
     "com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary": "JUnit5",
     "com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit5": "",
     "create.test.in.the.same.root": "true",
-    "git-widget-placeholder": "#5 on sprint__6-solution",
+    "git-widget-placeholder": "#15 on sprint__7-solution-in-file-manager",
+    "ignore.virus.scanning.warn.message": "true",
     "java.suggest.annotation.dependency": "false",
     "kotlin-language-version-configured": "true",
     "last_opened_file_path": "C:/Users/griko/IdeaProjects/java-kanban",
@@ -77,6 +86,7 @@
 }]]></component>
   <component name="RecentsManager">
     <key name="CreateClassDialog.RecentsKey">
+      <recent name="ru.yandex.tasktracker.exceptions" />
       <recent name="org.junit.jupiter.api" />
       <recent name="ru.yandex.tasktracker.service" />
       <recent name="src" />
@@ -84,7 +94,12 @@
     <key name="CreateTestDialog.Recents.Supers">
       <recent name="" />
     </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\griko\IdeaProjects\java-kanban\test" />
+      <recent name="C:\Users\griko\IdeaProjects\java-kanban\src\ru\yandex\tasktracker\service" />
+    </key>
     <key name="CreateTestDialog.RecentsKey">
+      <recent name="ru.yandex.tasktracker.service" />
       <recent name="ru.yandex.tasktracker.test" />
       <recent name="ru.yandex.tasktracker.model" />
     </key>
@@ -259,7 +274,71 @@
       <option name="project" value="LOCAL" />
       <updated>1733235784305</updated>
     </task>
-    <option name="localTasksCounter" value="19" />
+    <task id="LOCAL-00019" summary="ФЗ 6.1&#10;- В Node указать в качестве параметра неопределенный тип T;&#10;- Исправить методов remove() и removeNode() в InMemoryHistoryManager;&#10;- Добавить автотесты">
+      <option name="closed" value="true" />
+      <created>1733255735149</created>
+      <option name="number" value="00019" />
+      <option name="presentableId" value="LOCAL-00019" />
+      <option name="project" value="LOCAL" />
+      <updated>1733255735149</updated>
+    </task>
+    <task id="LOCAL-00020" summary="ФЗ 7">
+      <option name="closed" value="true" />
+      <created>1734250498811</created>
+      <option name="number" value="00020" />
+      <option name="presentableId" value="LOCAL-00020" />
+      <option name="project" value="LOCAL" />
+      <updated>1734250498811</updated>
+    </task>
+    <task id="LOCAL-00021" summary="ФЗ 7.&#10;Добавить реализацию бекенда через запись данных в файл и восстановление из файла.">
+      <option name="closed" value="true" />
+      <created>1734954077018</created>
+      <option name="number" value="00021" />
+      <option name="presentableId" value="LOCAL-00021" />
+      <option name="project" value="LOCAL" />
+      <updated>1734954077018</updated>
+    </task>
+    <task id="LOCAL-00022" summary="ФЗ 7.&#10;Добавить реализацию бекенда через запись данных в файл и восстановление из файла.">
+      <option name="closed" value="true" />
+      <created>1734956288491</created>
+      <option name="number" value="00022" />
+      <option name="presentableId" value="LOCAL-00022" />
+      <option name="project" value="LOCAL" />
+      <updated>1734956288491</updated>
+    </task>
+    <task id="LOCAL-00023" summary="ФЗ 7.&#10;Добавить реализацию бекенда через запись данных в файл и восстановление из файла.">
+      <option name="closed" value="true" />
+      <created>1734957252253</created>
+      <option name="number" value="00023" />
+      <option name="presentableId" value="LOCAL-00023" />
+      <option name="project" value="LOCAL" />
+      <updated>1734957252253</updated>
+    </task>
+    <task id="LOCAL-00024" summary="ФЗ 7.&#10;Добавить реализацию бекенда через запись данных в файл и восстановление из файла.">
+      <option name="closed" value="true" />
+      <created>1734957547463</created>
+      <option name="number" value="00024" />
+      <option name="presentableId" value="LOCAL-00024" />
+      <option name="project" value="LOCAL" />
+      <updated>1734957547463</updated>
+    </task>
+    <task id="LOCAL-00025" summary="ФЗ 7.&#10;Добавить реализацию бекенда через запись данных в файл и восстановление из файла.">
+      <option name="closed" value="true" />
+      <created>1734957730199</created>
+      <option name="number" value="00025" />
+      <option name="presentableId" value="LOCAL-00025" />
+      <option name="project" value="LOCAL" />
+      <updated>1734957730199</updated>
+    </task>
+    <task id="LOCAL-00026" summary="ФЗ 7.&#10;Добавить реализацию бекенда через запись данных в файл и восстановление из файла.">
+      <option name="closed" value="true" />
+      <created>1734960873194</created>
+      <option name="number" value="00026" />
+      <option name="presentableId" value="LOCAL-00026" />
+      <option name="project" value="LOCAL" />
+      <updated>1734960873194</updated>
+    </task>
+    <option name="localTasksCounter" value="27" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -306,17 +385,8 @@
     <MESSAGE value="ФЗ 5.&#10;Добавлены тесты, журнал истории просмотров." />
     <MESSAGE value="ФЗ 5.&#10;Исправления первой итерации." />
     <MESSAGE value="ФЗ 6.1&#10;- В Node указать в качестве параметра неопределенный тип T;&#10;- Исправить методов remove() и removeNode() в InMemoryHistoryManager;&#10;- Добавить автотесты" />
-    <option name="LAST_COMMIT_MESSAGE" value="ФЗ 6.1&#10;- В Node указать в качестве параметра неопределенный тип T;&#10;- Исправить методов remove() и removeNode() в InMemoryHistoryManager;&#10;- Добавить автотесты" />
-  </component>
-  <component name="XDebuggerManager">
-    <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/ru/yandex/tasktracker/model/Epic.java</url>
-          <line>9</line>
-          <option name="timeStamp" value="1" />
-        </line-breakpoint>
-      </breakpoints>
-    </breakpoint-manager>
+    <MESSAGE value="ФЗ 7" />
+    <MESSAGE value="ФЗ 7.&#10;Добавить реализацию бекенда через запись данных в файл и восстановление из файла." />
+    <option name="LAST_COMMIT_MESSAGE" value="ФЗ 7.&#10;Добавить реализацию бекенда через запись данных в файл и восстановление из файла." />
   </component>
 </project>
