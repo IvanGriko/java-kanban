@@ -1,23 +1,80 @@
 package ru.yandex.tasktracker.model;
 
+import java.time.Duration;
+import java.time.LocalDateTime;
+
 public class Task {
     protected String name;
     protected String description;
     protected TaskStatus status;
     protected int id;
-
-    public Task(String name, String description, int id, TaskStatus status) {
-        this.name = name;
-        this.description = description;
-        this.id = id;
-        this.status = status;
-    }
+    protected Duration duration;
+    protected LocalDateTime startTime;
+    protected LocalDateTime endTime;
 
     public Task(String name, String description, int id) {
         this.name = name;
         this.description = description;
         this.id = id;
         this.status = TaskStatus.NEW;
+    }
+
+    public Task(String name, String description, int id, TaskStatus status) {
+        this.name = name;
+        this.description = description;
+        this.id = id;
+        this.status = status;
+        this.startTime = LocalDateTime.now();
+        this.duration = Duration.ofMinutes(30);
+        this.endTime = startTime.plus(duration);
+    }
+
+    public Task(String name, String description, int id, TaskStatus status, long durationMinutes) {
+        this.name = name;
+        this.description = description;
+        this.id = id;
+        this.status = status;
+        this.startTime = LocalDateTime.now();
+        this.duration = Duration.ofMinutes(durationMinutes);
+        this.endTime = startTime.plus(duration);
+    }
+
+    public Task(String name, String description, int id, TaskStatus status, LocalDateTime startTime, long durationMinutes) {
+        this.name = name;
+        this.description = description;
+        this.id = id;
+        this.status = status;
+        this.startTime = startTime;
+        this.duration = Duration.ofMinutes(durationMinutes);
+        this.endTime = startTime.plus(duration);
+    }
+
+    public void setDuration(long minutes) {
+        this.duration = Duration.ofMinutes(minutes);
+    }
+
+    public void setStartTime(LocalDateTime startTime) {
+        this.startTime = startTime;
+    }
+
+    public void setEndTime(LocalDateTime endTime) {
+        this.endTime = endTime;
+    }
+
+    public LocalDateTime getStartTime() {
+        return startTime;
+    }
+
+    public Duration getDuration() {
+        return duration;
+    }
+
+    public long getDurationMinutes() {
+        return duration.toMinutes();
+    }
+
+    public LocalDateTime getEndTime() {
+        return startTime.plus(duration);
     }
 
     public String getName() {
@@ -65,7 +122,8 @@ public class Task {
     }
 
     public String toString() {
-        return id + ",TASK," + name + "," + getStatus() + "," + description + "\n";
+        return id + ",TASK," + name + "," + getStatus() + "," + description + "," + startTime + "," +
+                getDurationMinutes() + "," + endTime + "\n";
     }
 
     public boolean equals(Object o) {

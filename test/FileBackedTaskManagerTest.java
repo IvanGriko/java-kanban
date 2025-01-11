@@ -3,12 +3,10 @@ package ru.yandex.tasktracker.service;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Test;
-import ru.yandex.tasktracker.service.FileBackedTaskManager;
 import ru.yandex.tasktracker.exceptions.ManagerSaveException;
 
 import java.io.File;
 import java.io.IOException;
-import org.junit.jupiter.api.Assertions;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 

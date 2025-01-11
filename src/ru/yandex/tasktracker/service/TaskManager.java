@@ -5,8 +5,14 @@ import ru.yandex.tasktracker.model.Subtask;
 import ru.yandex.tasktracker.model.Task;
 
 import java.util.List;
+import java.util.Set;
 
 public interface TaskManager {
+
+    // получение списка задач и подзадач, отсортированных по времени
+    Set<Task> getPrioritizedTasks();
+
+    void taskTimeCheck(Task task);
 
     // получение списка задач
     List getTasks();

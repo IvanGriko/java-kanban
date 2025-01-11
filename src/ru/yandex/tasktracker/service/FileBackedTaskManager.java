@@ -9,6 +9,7 @@ import ru.yandex.tasktracker.model.TaskType;
 
 import java.io.*;
 import java.nio.charset.StandardCharsets;
+import java.time.LocalDateTime;
 import java.util.List;
 
 public class FileBackedTaskManager extends InMemoryTaskManager {
@@ -40,11 +41,6 @@ public class FileBackedTaskManager extends InMemoryTaskManager {
             }
             for (Epic epic : getEpics()) {
                 writer.write(epic.toString());
-            }
-            writer.append("\nИстория запросов:\n");
-            for (Task historyTask : getHistory()) {
-                Integer id1 = historyTask.getId();
-                writer.append(String.format("%d%n", id1));
             }
         } catch (IOException e) {
             throw new ManagerSaveException(e.getMessage());
@@ -100,6 +96,8 @@ public class FileBackedTaskManager extends InMemoryTaskManager {
                     description = str[4];
                     status = TaskStatus.valueOf(str[3]);
                     task = new Task(name, description, id, status);
+                    task.setStartTime(LocalDateTime.parse(str[5]));
+                    task.setDuration(Long.parseLong(str[6]));
                     break;
                 case SUBTASK:
                     id = Integer.parseInt(str[0]);
@@ -108,6 +106,8 @@ public class FileBackedTaskManager extends InMemoryTaskManager {
                     status = TaskStatus.valueOf(str[3]);
                     int epicId = Integer.parseInt(str[5]);
                     task = new Subtask(name, description, id, status, getEpic(epicId));
+                    task.setStartTime(LocalDateTime.parse(str[6]));
+                    task.setDuration(Long.parseLong(str[7]));
                     break;
                 case EPIC:
                     id = Integer.parseInt(str[0]);
@@ -116,6 +116,8 @@ public class FileBackedTaskManager extends InMemoryTaskManager {
                     status = TaskStatus.valueOf(str[3]);
                     task = new Epic(name, description, id);
                     task.setStatus(status);
+                    task.setStartTime(LocalDateTime.parse(str[5]));
+                    task.setDuration(Long.parseLong(str[6]));
                     break;
             }
         }

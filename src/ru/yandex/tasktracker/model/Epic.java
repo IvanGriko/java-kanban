@@ -1,10 +1,22 @@
 package ru.yandex.tasktracker.model;
 
+import java.time.Duration;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.Objects;
+import java.util.stream.Collectors;
 
 public class Epic extends Task {
+
     protected ArrayList<Subtask> subtaskList = new ArrayList<>();
+
+    public Epic(String name, String description, int taskCount) {
+        super(name, description, taskCount);
+        this.startTime = getStartTime();
+        this.duration = getDuration();
+        this.endTime = getEndTime();
+    }
 
     public ArrayList<Subtask> getSubtaskList() {
         return subtaskList;
@@ -14,17 +26,51 @@ public class Epic extends Task {
         this.subtaskList = subtaskList;
     }
 
-    @Override
-    public TaskType getType() {
-        return TaskType.EPIC;
-    }
-
     public void clearSubtasks() {
         subtaskList.clear();
     }
 
-    public Epic(String name, String description, int taskCount) {
-        super(name, description, taskCount);
+    @Override
+    public LocalDateTime getStartTime() {
+        if (subtaskList == null || subtaskList.isEmpty()) {
+            return LocalDateTime.MIN;
+        }
+        subtaskList
+                .stream()
+                .sorted(Comparator.comparing(Subtask::getStartTime))
+                .collect(Collectors.toList());
+        startTime = subtaskList.getFirst().getStartTime();
+        return startTime;
+    }
+
+    @Override
+    public LocalDateTime getEndTime() {
+        if (subtaskList == null || subtaskList.isEmpty()) {
+            return LocalDateTime.MAX;
+        }
+        subtaskList
+                .stream()
+                .sorted(Comparator.comparing(Subtask::getEndTime))
+                .collect(Collectors.toList());
+        endTime = subtaskList.getLast().endTime;
+        return endTime;
+    }
+
+    @Override
+    public Duration getDuration() {
+        if (subtaskList == null || subtaskList.isEmpty()) {
+            return Duration.ZERO;
+        }
+        Duration duration = Duration.ZERO;
+        for (Subtask subtask : subtaskList) {
+            duration = duration.plus(subtask.getDuration());
+        }
+        return duration;
+    }
+
+    @Override
+    public TaskType getType() {
+        return TaskType.EPIC;
     }
 
     @Override
@@ -34,7 +80,8 @@ public class Epic extends Task {
 
     @Override
     public String toString() {
-        return id + ",EPIC," + name + "," + getStatus() + "," + description + "\n";
+        return id + ",EPIC," + name + "," + getStatus() + "," + description + "," + startTime + "," +
+                getDurationMinutes() + "," + endTime + "\n";
     }
 
     @Override
