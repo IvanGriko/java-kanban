@@ -18,7 +18,7 @@ public class InMemoryTaskManager implements TaskManager {
     final Map<Integer, Subtask> subtasksMap = new HashMap<>();
     final Map<Integer, Epic> epicsMap = new HashMap<>();
     protected Set<Task> sortedTasks = new TreeSet<>((task1, task2) -> {
-        if (task1.getId()==(task2.getId())) {
+        if (task1.getId() == (task2.getId())) {
             return 0;
         } else if (task1.getStartTime().isAfter(task2.getStartTime()) ||
                 task1.getStartTime().isEqual(task2.getStartTime())) {
