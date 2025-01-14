@@ -4,25 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="dec4f7ba-080c-4913-a420-5017c8352794" name="Changes" comment="ФЗ 8.&#10;Добавить реализацию сортировки задач по приоритету.">
-      <change afterPath="$PROJECT_DIR$/src/test/FileBackedTaskManagerTest.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/test/InMemoryHistoryManagerTest.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/test/InMemoryTaskManagerTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ru/yandex/tasktracker/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ru/yandex/tasktracker/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ru/yandex/tasktracker/exceptions/ManagerSaveException.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ru/yandex/tasktracker/exceptions/ManagerSaveException.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ru/yandex/tasktracker/model/Epic.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ru/yandex/tasktracker/model/Epic.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ru/yandex/tasktracker/model/Subtask.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ru/yandex/tasktracker/model/Subtask.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ru/yandex/tasktracker/service/FileBackedTaskManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ru/yandex/tasktracker/service/FileBackedTaskManager.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ru/yandex/tasktracker/service/HistoryManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ru/yandex/tasktracker/service/HistoryManager.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ru/yandex/tasktracker/service/InMemoryHistoryManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ru/yandex/tasktracker/service/InMemoryHistoryManager.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ru/yandex/tasktracker/service/InMemoryTaskManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ru/yandex/tasktracker/service/InMemoryTaskManager.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ru/yandex/tasktracker/service/Managers.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ru/yandex/tasktracker/service/Managers.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ru/yandex/tasktracker/service/TaskManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ru/yandex/tasktracker/service/TaskManager.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/test/FileBackedTaskManagerTest.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/test/InMemoryHistoryManagerTest.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/test/InMemoryTaskManagerTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/TaskManagerTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/test/ManagersTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/ManagersTest.java" afterDir="false" />
+    <list default="true" id="dec4f7ba-080c-4913-a420-5017c8352794" name="Changes" comment="ФЗ 8. Вторая итерация. Добавлены базовый тестовый класс, тесты исключений, исправлены методы добавления и обновления задач.">
+      <change beforePath="$PROJECT_DIR$/src/test/TaskManagerTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/TaskManagerTest.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -372,7 +355,15 @@
       <option name="project" value="LOCAL" />
       <updated>1736597928237</updated>
     </task>
-    <option name="localTasksCounter" value="30" />
+    <task id="LOCAL-00030" summary="ФЗ 8. Вторая итерация. Добавлены базовый тестовый класс, тесты исключений, исправлены методы добавления и обновления задач.">
+      <option name="closed" value="true" />
+      <created>1736877485228</created>
+      <option name="number" value="00030" />
+      <option name="presentableId" value="LOCAL-00030" />
+      <option name="project" value="LOCAL" />
+      <updated>1736877485228</updated>
+    </task>
+    <option name="localTasksCounter" value="31" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -422,7 +413,8 @@
     <MESSAGE value="ФЗ 7" />
     <MESSAGE value="ФЗ 7.&#10;Добавить реализацию бекенда через запись данных в файл и восстановление из файла." />
     <MESSAGE value="ФЗ 8.&#10;Добавить реализацию сортировки задач по приоритету." />
-    <option name="LAST_COMMIT_MESSAGE" value="ФЗ 8.&#10;Добавить реализацию сортировки задач по приоритету." />
+    <MESSAGE value="ФЗ 8. Вторая итерация. Добавлены базовый тестовый класс, тесты исключений, исправлены методы добавления и обновления задач." />
+    <option name="LAST_COMMIT_MESSAGE" value="ФЗ 8. Вторая итерация. Добавлены базовый тестовый класс, тесты исключений, исправлены методы добавления и обновления задач." />
   </component>
   <component name="XDebuggerManager">
     <pin-to-top-manager>
