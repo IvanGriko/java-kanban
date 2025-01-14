@@ -89,7 +89,7 @@ public abstract class TaskManagerTest<T extends TaskManager> {
                 testTask1.getEndTime().plusMinutes(40), 15);
         testManager.addTask(testTask1);
         Exception exception = Assertions.assertThrows(ManagerSaveException.class, () -> testManager.addTask(testTask2));
-        Assertions.assertEquals(STR."Пересечение по времени с задачей \{testTask1.getName()}", exception.getMessage());
+        Assertions.assertEquals("Пересечение по времени с задачей " + testTask1.getName(), exception.getMessage());
         testManager.addTask(testTask3);
         Assertions.assertEquals(2, testManager.getTasks().size());
     }
