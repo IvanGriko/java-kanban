@@ -17,12 +17,12 @@ public class InMemoryTaskManager implements TaskManager {
 
     public int taskCount = 1;
 
-    final private Map<Integer, Task> tasksMap = new HashMap<>();
-    final private Map<Integer, Subtask> subtasksMap = new HashMap<>();
-    final private Map<Integer, Epic> epicsMap = new HashMap<>();
+    private final Map<Integer, Task> tasksMap = new HashMap<>();
+    private final Map<Integer, Subtask> subtasksMap = new HashMap<>();
+    private final Map<Integer, Epic> epicsMap = new HashMap<>();
     protected Set<Task> sortedTasks = new TreeSet<>(comparing(Task::getStartTime, nullsLast(LocalDateTime::compareTo)));
 
-    final private HistoryManager historyManager = Managers.getDefaultHistory();
+    private final HistoryManager historyManager = Managers.getDefaultHistory();
 
     @Override
     public Set<Task> getPrioritizedTasks() {
