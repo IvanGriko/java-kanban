@@ -6,11 +6,11 @@ import java.util.*;
 
 public class InMemoryHistoryManager implements HistoryManager {
 
-    private static Node<Task> head;
-    private static Node<Task> tail;
-    private static final Map<Integer, Node> historyMap = new HashMap<>();
+    private Node<Task> head;
+    private Node<Task> tail;
+    private final Map<Integer, Node> historyMap = new HashMap<>();
 
-    private static Node<Task> linkLast(Task task) {
+    private Node<Task> linkLast(Task task) {
         final Node<Task> newNode;
         final Node<Task> oldTail = tail;
         newNode = new Node<>(oldTail, task, null);
@@ -25,7 +25,7 @@ public class InMemoryHistoryManager implements HistoryManager {
         return newNode;
     }
 
-    private static List<Task> getTasks() {
+    private List<Task> getTasks() {
         List<Task> tasksList = new LinkedList<>();
         Node<Task> node = head;
         while (node != null) {
@@ -35,7 +35,7 @@ public class InMemoryHistoryManager implements HistoryManager {
         return tasksList;
     }
 
-    private static void removeNode(Node node) {
+    private void removeNode(Node node) {
         if (node.next == null && node.prev == null) {
             head = null;
             tail = null;

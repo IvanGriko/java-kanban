@@ -14,7 +14,7 @@ import java.util.List;
 
 public class FileBackedTaskManager extends InMemoryTaskManager {
 
-    private static int taskCount;
+    private int taskCount;
     private File file;
 
     public FileBackedTaskManager(File file) {

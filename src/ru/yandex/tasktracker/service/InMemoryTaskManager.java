@@ -17,12 +17,12 @@ public class InMemoryTaskManager implements TaskManager {
 
     public int taskCount = 1;
 
-    final Map<Integer, Task> tasksMap = new HashMap<>();
-    final Map<Integer, Subtask> subtasksMap = new HashMap<>();
-    final Map<Integer, Epic> epicsMap = new HashMap<>();
+    final private Map<Integer, Task> tasksMap = new HashMap<>();
+    final private Map<Integer, Subtask> subtasksMap = new HashMap<>();
+    final private Map<Integer, Epic> epicsMap = new HashMap<>();
     protected Set<Task> sortedTasks = new TreeSet<>(comparing(Task::getStartTime, nullsLast(LocalDateTime::compareTo)));
 
-    final HistoryManager historyManager = Managers.getDefaultHistory();
+    final private HistoryManager historyManager = Managers.getDefaultHistory();
 
     @Override
     public Set<Task> getPrioritizedTasks() {
@@ -133,11 +133,11 @@ public class InMemoryTaskManager implements TaskManager {
         subtasksMap.put(subtask.getId(), subtask);
         sortedTasks.add(subtask);
         taskCount++;
-        ArrayList<Subtask> subtList = getEpicByIdWithoutMemorize(subtask.getEpicId()).getSubtaskList();
-        subtList.add(subtask);
-        getEpicByIdWithoutMemorize(subtask.getEpicId()).setSubtaskList(subtList);
-        updateEpicStatus(getEpicByIdWithoutMemorize(subtask.getEpicId()));
-        getEpicByIdWithoutMemorize(subtask.getEpicId()).calculateTime();
+        Epic tmpEpic = getEpicByIdWithoutMemorize(subtask.getEpicId());
+        tmpEpic.getSubtaskList().add(subtask);
+        updateEpicStatus(tmpEpic);
+        tmpEpic.calculateTime();
+        updateEpic(tmpEpic);
     }
 
     @Override
@@ -146,23 +146,23 @@ public class InMemoryTaskManager implements TaskManager {
         subtasksMap.replace(subtask.getId(), subtask);
         sortedTasks.remove(subtask);
         sortedTasks.add(subtask);
-        ArrayList<Subtask> subtList = getEpicByIdWithoutMemorize(subtask.getEpicId()).getSubtaskList();
-        subtList.remove(subtask);
-        subtList.add(subtask);
-        getEpicByIdWithoutMemorize(subtask.getEpicId()).setSubtaskList(subtList);
-        updateEpicStatus(getEpicByIdWithoutMemorize(subtask.getEpicId()));
-        getEpicByIdWithoutMemorize(subtask.getEpicId()).calculateTime();
+        Epic tmpEpic = getEpicByIdWithoutMemorize(subtask.getEpicId());
+        tmpEpic.getSubtaskList().remove(subtask);
+        tmpEpic.getSubtaskList().add(subtask);
+        updateEpicStatus(tmpEpic);
+        tmpEpic.calculateTime();
+        updateEpic(tmpEpic);
     }
 
     @Override
     public void removeSubtask(Subtask subtask) {
         sortedTasks.remove(subtask);
         subtasksMap.remove(subtask.getId());
-        ArrayList<Subtask> subtList = getEpicByIdWithoutMemorize(subtask.getEpicId()).getSubtaskList();
-        subtList.remove(subtask);
-        getEpicByIdWithoutMemorize(subtask.getEpicId()).setSubtaskList(subtList);
-        updateEpicStatus(getEpicByIdWithoutMemorize(subtask.getEpicId()));
-        getEpicByIdWithoutMemorize(subtask.getEpicId()).calculateTime();
+        Epic tmpEpic = getEpicByIdWithoutMemorize(subtask.getEpicId());
+        tmpEpic.getSubtaskList().remove(subtask);
+        updateEpicStatus(tmpEpic);
+        tmpEpic.calculateTime();
+        updateEpic(tmpEpic);
         historyManager.removeFromHistory(subtask.getId());
     }
 
@@ -201,8 +201,7 @@ public class InMemoryTaskManager implements TaskManager {
 
     @Override
     public Epic getEpicByIdWithoutMemorize(int id) {
-        Epic epic = epicsMap.get(id);
-        return epic;
+        return epicsMap.get(id);
     }
 
     @Override
