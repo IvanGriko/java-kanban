@@ -1,10 +1,13 @@
-package ru.yandex.tasktracker.service;
+package test;
 
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import ru.yandex.tasktracker.model.Task;
 import ru.yandex.tasktracker.model.TaskStatus;
 import ru.yandex.tasktracker.exceptions.ManagerSaveException;
+import ru.yandex.tasktracker.service.HistoryManager;
+import ru.yandex.tasktracker.service.Managers;
+import ru.yandex.tasktracker.service.TaskManager;
 
 class ManagersTest {
 
@@ -26,7 +29,7 @@ class ManagersTest {
         Task task = new Task("Name", "Description", 1, TaskStatus.NEW, 15);
         taskManager.addTask(task);
         Assertions.assertNotNull(taskManager.getTasks(), "Задача не найдена.");
-        taskManager.getTask(1);
+        taskManager.getTaskById(1);
         Assertions.assertNotNull(manager, "Менеджер не найден.");
         Assertions.assertNotEquals(0, taskManager.getHistory().size(),
                 "История не найдена.");
@@ -38,7 +41,7 @@ class ManagersTest {
         Task task = new Task("Name", "Description", 1, TaskStatus.NEW, 15);
         TaskManager taskManager = Managers.getDefaultTaskManager();
         taskManager.addTask(task);
-        Assertions.assertEquals(task, taskManager.getTask(task.getId()),
+        Assertions.assertEquals(task, taskManager.getTaskById(task.getId()),
                 "Задачи не совпадают.");
     }
 }

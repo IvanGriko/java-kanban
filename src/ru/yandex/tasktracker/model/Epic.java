@@ -13,9 +13,9 @@ public class Epic extends Task {
 
     public Epic(String name, String description, int taskCount) {
         super(name, description, taskCount);
-        this.startTime = getStartTime();
-        this.duration = getDuration();
-        this.endTime = getEndTime();
+        this.startTime = calculateStartTime();
+        this.duration = calculateDuration();
+        this.endTime = calculateEndTime();
     }
 
     public ArrayList<Subtask> getSubtaskList() {
@@ -30,8 +30,13 @@ public class Epic extends Task {
         subtaskList.clear();
     }
 
-    @Override
-    public LocalDateTime getStartTime() {
+    public void calculateTime() {
+        calculateStartTime();
+        calculateDuration();
+        calculateEndTime();
+    }
+
+    public LocalDateTime calculateStartTime() {
         if (subtaskList == null || subtaskList.isEmpty()) {
             return LocalDateTime.MIN;
         }
@@ -43,8 +48,7 @@ public class Epic extends Task {
         return startTime;
     }
 
-    @Override
-    public LocalDateTime getEndTime() {
+    public LocalDateTime calculateEndTime() {
         if (subtaskList == null || subtaskList.isEmpty()) {
             return LocalDateTime.MAX;
         }
@@ -56,8 +60,7 @@ public class Epic extends Task {
         return endTime;
     }
 
-    @Override
-    public Duration getDuration() {
+    public Duration calculateDuration() {
         if (subtaskList == null || subtaskList.isEmpty()) {
             return Duration.ZERO;
         }

@@ -1,27 +1,29 @@
-package ru.yandex.tasktracker.service;
+package test;
 
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import ru.yandex.tasktracker.exceptions.ManagerSaveException;
 import ru.yandex.tasktracker.model.Epic;
 import ru.yandex.tasktracker.model.Subtask;
 import ru.yandex.tasktracker.model.Task;
 import ru.yandex.tasktracker.model.TaskStatus;
-import ru.yandex.tasktracker.exceptions.ManagerSaveException;
+import ru.yandex.tasktracker.service.InMemoryTaskManager;
+import ru.yandex.tasktracker.service.Managers;
+import ru.yandex.tasktracker.service.TaskManager;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 
-class InMemoryTaskManagerTest {
+public abstract class TaskManagerTest<T extends TaskManager> {
 
-    TaskManager testManager;
+    protected T testManager;
 
     @BeforeEach
     public void initManager() {
-        testManager = Managers.getDefaultTaskManager();
+        testManager = (T) Managers.getDefaultTaskManager();
     }
 
-    // Тест расчёта статуса эпика
     @Test
     void determinateStatusOfEpicTest() throws ManagerSaveException {
         Epic epic1 = new Epic("Эпик1", "Все подзадачи со статусом NEW", 1);
@@ -54,15 +56,13 @@ class InMemoryTaskManagerTest {
         Assertions.assertEquals(TaskStatus.IN_PROGRESS, epic4.getStatus(), "Статус не соответствует");
     }
 
-    // Проверка наличия эпика
     @Test
     void subtaskHasEpicTest() {
         Epic epic = new Epic("Эпик", "Тестовый эпик", 1);
         Subtask subtask = new Subtask("Подзадача", "Тестовая подзадача", 2, TaskStatus.NEW, 30, epic);
-        Assertions.assertNotNull(subtask.getEpic(), "Эпик отсутствует");
+        Assertions.assertNotNull(subtask.getEpicId(), "Эпик отсутствует");
     }
 
-    // Тест на корректность расчёта пересечения интервалов и продолжительности
     @Test
     public void timeAndDurationTest() {
         Epic epic = new Epic("Эпик", "Тестовый эпик", 1);
@@ -79,6 +79,19 @@ class InMemoryTaskManagerTest {
                 "Начало эпика не совпало с началом первой подзадачи");
         Assertions.assertEquals(subtask2.getEndTime(), epic.getEndTime(),
                 "Завершение эпика не совпало с завершением последней подзадачи");
+    }
+
+    @Test
+    public void checkCrossingIntervalsTest() {
+        Task testTask1 = new Task("Задача1", "Первая задача", 1, TaskStatus.NEW, 20);
+        Task testTask2 = new Task("Задача2", "Пересекающаяся", 2, TaskStatus.NEW, 20);
+        Task testTask3 = new Task("Задача3", "Непересекающаяся", 3, TaskStatus.NEW,
+                testTask1.getEndTime().plusMinutes(40), 15);
+        testManager.addTask(testTask1);
+        Exception exception = Assertions.assertThrows(ManagerSaveException.class, () -> testManager.addTask(testTask2));
+        Assertions.assertEquals(STR."Пересечение по времени с задачей \{testTask1.getName()}", exception.getMessage());
+        testManager.addTask(testTask3);
+        Assertions.assertEquals(2, testManager.getTasks().size());
     }
 
     @Test
@@ -110,7 +123,7 @@ class InMemoryTaskManagerTest {
         Task testTask2 = new Task("Задача2", "Вторая задача",
                 ((InMemoryTaskManager) testManager).taskCount, TaskStatus.NEW, 20);
         testManager.addTask(testTask2);
-        testManager.deleteTasks();
+        testManager.removeTasks();
         Assertions.assertEquals(0, testManager.getTasks().size(), "Задачи не удалены");
     }
 
@@ -119,7 +132,7 @@ class InMemoryTaskManagerTest {
         Task testTask1 = new Task("Задача1", "Первая задача",
                 ((InMemoryTaskManager) testManager).taskCount, TaskStatus.NEW, 15);
         testManager.addTask(testTask1);
-        Assertions.assertEquals(testTask1, testManager.getTask(testTask1.getId()), "Задачи не совпадают.");
+        Assertions.assertEquals(testTask1, testManager.getTaskById(testTask1.getId()), "Задачи не совпадают.");
     }
 
     @Test
@@ -127,7 +140,7 @@ class InMemoryTaskManagerTest {
         Task testTask1 = new Task("Задача1", "Первая задача",
                 ((InMemoryTaskManager) testManager).taskCount, TaskStatus.NEW, 15);
         testManager.addTask(testTask1);
-        Assertions.assertNotNull(testManager.getTask(1), "Задача не найдена.");
+        Assertions.assertNotNull(testManager.getTaskById(1), "Задача не найдена.");
     }
 
     @Test
@@ -139,10 +152,10 @@ class InMemoryTaskManagerTest {
                 ((InMemoryTaskManager) testManager).taskCount, TaskStatus.NEW, 20);
         testManager.addTask(testTask2);
         Task oldTask = testTask2;
-        Task updatingTask = testManager.getTask(2);
+        Task updatingTask = testManager.getTaskById(2);
         updatingTask.setDescription("Обновлённая задача");
         testManager.updateTask(updatingTask);
-        Assertions.assertEquals(oldTask, testManager.getTask(2), "Задача не обновлена.");
+        Assertions.assertEquals(oldTask, testManager.getTaskById(2), "Задача не обновлена.");
     }
 
     @Test
@@ -152,7 +165,7 @@ class InMemoryTaskManagerTest {
         testManager.addTask(testTask1);
         int id = testTask1.getId();
         testManager.removeTask(testTask1);
-        Assertions.assertNull(testManager.getTask(id), "Задача не удалена.");
+        Assertions.assertNull(testManager.getTaskById(id), "Задача не удалена.");
     }
 
     @Test
@@ -162,7 +175,7 @@ class InMemoryTaskManagerTest {
         testManager.addTask(testTask1);
         int id = testTask1.getId();
         testManager.removeTaskByID(id);
-        Assertions.assertNull(testManager.getTask(id), "Задача не удалена.");
+        Assertions.assertNull(testManager.getTaskById(id), "Задача не удалена.");
     }
 
     @Test
@@ -208,7 +221,7 @@ class InMemoryTaskManagerTest {
         Subtask testSubtask2 = new Subtask("Подзадача2", "Вторая подзадача",
                 ((InMemoryTaskManager) testManager).taskCount, TaskStatus.NEW, 15, epic1);
         testManager.addSubtask(testSubtask2);
-        testManager.deleteSubtasks();
+        testManager.removeSubtasks();
         Assertions.assertEquals(0, testManager.getSubtasks().size(),
                 "Подзадачи не удалены");
     }
@@ -221,7 +234,7 @@ class InMemoryTaskManagerTest {
         Subtask testSubtask1 = new Subtask("Подзадача1", "Первая подзадача",
                 ((InMemoryTaskManager) testManager).taskCount, TaskStatus.NEW, 15, epic1);
         testManager.addSubtask(testSubtask1);
-        Assertions.assertEquals(testSubtask1, testManager.getSubtask(testSubtask1.getId()),
+        Assertions.assertEquals(testSubtask1, testManager.getSubtaskById(testSubtask1.getId()),
                 "Подзадачи не совпадают.");
     }
 
@@ -233,7 +246,7 @@ class InMemoryTaskManagerTest {
         Subtask testSubtask1 = new Subtask("Подзадача1", "Первая подзадача",
                 ((InMemoryTaskManager) testManager).taskCount, TaskStatus.NEW, 15, epic1);
         testManager.addSubtask(testSubtask1);
-        Assertions.assertNotNull(testManager.getSubtask(testSubtask1.getId()),
+        Assertions.assertNotNull(testManager.getSubtaskById(testSubtask1.getId()),
                 "Подзадача не найдена.");
     }
 
@@ -246,11 +259,11 @@ class InMemoryTaskManagerTest {
                 ((InMemoryTaskManager) testManager).taskCount, TaskStatus.NEW, 15, epic1);
         testManager.addSubtask(testSubtask1);
         Subtask oldSubtask = testSubtask1;
-        Subtask updatingSubtask = testManager.getSubtask(testSubtask1.getId());
+        Subtask updatingSubtask = testManager.getSubtaskById(testSubtask1.getId());
         updatingSubtask.setDescription("Обновлённая задача");
         updatingSubtask.setStatus(TaskStatus.DONE);
         testManager.updateSubtask(updatingSubtask);
-        Assertions.assertEquals(oldSubtask, testManager.getSubtask(updatingSubtask.getId()),
+        Assertions.assertEquals(oldSubtask, testManager.getSubtaskById(updatingSubtask.getId()),
                 "Подзадача не обновлена.");
     }
 
@@ -264,7 +277,7 @@ class InMemoryTaskManagerTest {
         testManager.addSubtask(testSubtask1);
         int id = testSubtask1.getId();
         testManager.removeSubtask(testSubtask1);
-        Assertions.assertNull(testManager.getSubtask(id), "Подзадача не удалена.");
+        Assertions.assertNull(testManager.getSubtaskById(id), "Подзадача не удалена.");
     }
 
     @Test
@@ -277,7 +290,7 @@ class InMemoryTaskManagerTest {
         testManager.addSubtask(testSubtask1);
         int id = testSubtask1.getId();
         testManager.removeSubtaskByID(id);
-        Assertions.assertNull(testManager.getSubtask(id), "Подзадача не удалена.");
+        Assertions.assertNull(testManager.getSubtaskById(id), "Подзадача не удалена.");
     }
 
     @Test
@@ -314,7 +327,7 @@ class InMemoryTaskManagerTest {
         Epic epic2 = new Epic("Эпик2", "Второй эпик",
                 ((InMemoryTaskManager) testManager).taskCount);
         testManager.addEpic(epic2);
-        testManager.deleteEpics();
+        testManager.removeEpics();
         Assertions.assertEquals(0, testManager.getEpics().size(),
                 "Эпики не удалены");
     }
@@ -324,7 +337,7 @@ class InMemoryTaskManagerTest {
         Epic epic1 = new Epic("Эпик1", "Первый эпик",
                 ((InMemoryTaskManager) testManager).taskCount);
         testManager.addEpic(epic1);
-        Assertions.assertEquals(epic1, testManager.getEpic(epic1.getId()),
+        Assertions.assertEquals(epic1, testManager.getEpicByIdWithoutMemorize(epic1.getId()),
                 "Эпики не совпадают.");
     }
 
@@ -333,7 +346,7 @@ class InMemoryTaskManagerTest {
         Epic epic1 = new Epic("Эпик1", "Первый эпик",
                 ((InMemoryTaskManager) testManager).taskCount);
         testManager.addEpic(epic1);
-        Assertions.assertNotNull(testManager.getEpic(epic1.getId()),
+        Assertions.assertNotNull(testManager.getEpicByIdWithoutMemorize(epic1.getId()),
                 "Эпик не найден.");
     }
 
@@ -351,7 +364,7 @@ class InMemoryTaskManagerTest {
         testSubtask.setStatus(TaskStatus.DONE);
         testManager.updateSubtask(testSubtask);
         testManager.updateEpic(epic1);
-        Assertions.assertEquals(oldEpic, testManager.getEpic(updatingEpic.getId()),
+        Assertions.assertEquals(oldEpic, testManager.getEpicByIdWithoutMemorize(updatingEpic.getId()),
                 "Эпик не обновлён.");
     }
 
@@ -363,8 +376,8 @@ class InMemoryTaskManagerTest {
         Subtask testSubtask = new Subtask("Подзадача1", "Первая подзадача",
                 ((InMemoryTaskManager) testManager).taskCount, TaskStatus.NEW, 15, epic1);
         testManager.addSubtask(testSubtask);
-        testManager.removeEpic(epic1.getId());
-        Assertions.assertNull(testManager.getEpic(epic1.getId()), "Эпик не удалён.");
+        testManager.removeEpicById(epic1.getId());
+        Assertions.assertNull(testManager.getEpicByIdWithoutMemorize(epic1.getId()), "Эпик не удалён.");
         Assertions.assertEquals(0, testManager.getSubtasksByEpic(epic1).size(),
                 "Подзадачи эпика не удалены");
     }
@@ -377,7 +390,7 @@ class InMemoryTaskManagerTest {
         Subtask testSubtask1 = new Subtask("Подзадача1", "Первая подзадача",
                 ((InMemoryTaskManager) testManager).taskCount, TaskStatus.NEW, 15, epic1);
         testManager.addSubtask(testSubtask1);
-        Subtask updatingSubtask = testManager.getSubtask(testSubtask1.getId());
+        Subtask updatingSubtask = testManager.getSubtaskById(testSubtask1.getId());
         updatingSubtask.setDescription("Обновлённая задача");
         updatingSubtask.setStatus(TaskStatus.DONE);
         testManager.updateSubtask(updatingSubtask);

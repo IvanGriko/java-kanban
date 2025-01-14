@@ -24,11 +24,11 @@ public class Subtask extends Task {
 
     @Override
     public String toString() {
-        return id + ",SUBTASK," + name + "," + getStatus() + "," + description + "," + getEpic() + "," +
+        return id + ",SUBTASK," + name + "," + getStatus() + "," + description + "," + getEpicId() + "," +
                 startTime + "," + getDurationMinutes() + "," + endTime + "\n";
     }
 
-    public int getEpic() {
+    public int getEpicId() {
         return this.epic.getId();
     }
 
