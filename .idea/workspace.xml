@@ -4,17 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="dec4f7ba-080c-4913-a420-5017c8352794" name="Changes" comment="ФЗ 7.&#10;Добавить реализацию бекенда через запись данных в файл и восстановление из файла.">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ru/yandex/tasktracker/exceptions/ManagerSaveException.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ru/yandex/tasktracker/exceptions/ManagerSaveException.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ru/yandex/tasktracker/model/Epic.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ru/yandex/tasktracker/model/Epic.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ru/yandex/tasktracker/model/Subtask.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ru/yandex/tasktracker/model/Subtask.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ru/yandex/tasktracker/model/Task.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ru/yandex/tasktracker/model/Task.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ru/yandex/tasktracker/service/FileBackedTaskManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ru/yandex/tasktracker/service/FileBackedTaskManager.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ru/yandex/tasktracker/service/InMemoryTaskManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ru/yandex/tasktracker/service/InMemoryTaskManager.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ru/yandex/tasktracker/service/Managers.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ru/yandex/tasktracker/service/Managers.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ru/yandex/tasktracker/service/TaskManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ru/yandex/tasktracker/service/TaskManager.java" afterDir="false" />
-    </list>
+    <list default="true" id="dec4f7ba-080c-4913-a420-5017c8352794" name="Changes" comment="ФЗ 8. Третья итерация. Оптимизирован код в методах поздадач с обновлением эпика." />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -26,15 +16,15 @@
         <option value="Interface" />
         <option value="AnnotationType" />
         <option value="Enum" />
-        <option value="Class" />
         <option value="JUnit5 Test Class" />
+        <option value="Class" />
       </list>
     </option>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$" value="sprint_6-solution" />
+        <entry key="$PROJECT_DIR$" value="main" />
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -58,32 +48,35 @@
   &quot;associatedIndex&quot;: 4
 }</component>
   <component name="ProjectId" id="2nqX492whIpGnQXyGrhOjHucse3" />
-  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "Application.Main.executor": "Debug",
-    "Downloaded.Files.Path.Enabled": "true",
-    "Repository.Attach.Annotations": "false",
-    "Repository.Attach.JavaDocs": "false",
-    "Repository.Attach.Sources": "false",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary": "JUnit5",
-    "com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit5": "",
-    "create.test.in.the.same.root": "true",
-    "git-widget-placeholder": "#15 on sprint__7-solution-in-file-manager",
-    "ignore.virus.scanning.warn.message": "true",
-    "java.suggest.annotation.dependency": "false",
-    "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "C:/Users/griko/IdeaProjects/java-kanban",
-    "onboarding.tips.debug.path": "C:/Users/griko/IdeaProjects/TaskManager/src/Main.java",
-    "settings.editor.selected.configurable": "preferences.lookFeel"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;ASKED_ADD_EXTERNAL_FILES&quot;: &quot;true&quot;,
+    &quot;Application.Main.executor&quot;: &quot;Debug&quot;,
+    &quot;Downloaded.Files.Path.Enabled&quot;: &quot;true&quot;,
+    &quot;Repository.Attach.Annotations&quot;: &quot;false&quot;,
+    &quot;Repository.Attach.JavaDocs&quot;: &quot;false&quot;,
+    &quot;Repository.Attach.Sources&quot;: &quot;false&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
+    &quot;com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary&quot;: &quot;JUnit5&quot;,
+    &quot;com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit5&quot;: &quot;&quot;,
+    &quot;create.test.in.the.same.root&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;#19 on sprint__8-solution-time-and-duration&quot;,
+    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
+    &quot;java.suggest.annotation.dependency&quot;: &quot;false&quot;,
+    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/griko/IdeaProjects/java-kanban&quot;,
+    &quot;onboarding.tips.debug.path&quot;: &quot;C:/Users/griko/IdeaProjects/TaskManager/src/Main.java&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.lookFeel&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="CreateClassDialog.RecentsKey">
       <recent name="ru.yandex.tasktracker.exceptions" />
@@ -95,6 +88,7 @@
       <recent name="" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\griko\IdeaProjects\java-kanban\src\ru\yandex\tasktracker" />
       <recent name="C:\Users\griko\IdeaProjects\java-kanban\test" />
       <recent name="C:\Users\griko\IdeaProjects\java-kanban\src\ru\yandex\tasktracker\service" />
     </key>
@@ -338,7 +332,95 @@
       <option name="project" value="LOCAL" />
       <updated>1734960873194</updated>
     </task>
-    <option name="localTasksCounter" value="27" />
+    <task id="LOCAL-00027" summary="ФЗ 8.&#10;Добавить реализацию сортировки задач по приоритету.">
+      <option name="closed" value="true" />
+      <created>1736597413719</created>
+      <option name="number" value="00027" />
+      <option name="presentableId" value="LOCAL-00027" />
+      <option name="project" value="LOCAL" />
+      <updated>1736597413720</updated>
+    </task>
+    <task id="LOCAL-00028" summary="ФЗ 8.&#10;Добавить реализацию сортировки задач по приоритету.">
+      <option name="closed" value="true" />
+      <created>1736597769714</created>
+      <option name="number" value="00028" />
+      <option name="presentableId" value="LOCAL-00028" />
+      <option name="project" value="LOCAL" />
+      <updated>1736597769714</updated>
+    </task>
+    <task id="LOCAL-00029" summary="ФЗ 8.&#10;Добавить реализацию сортировки задач по приоритету.">
+      <option name="closed" value="true" />
+      <created>1736597928237</created>
+      <option name="number" value="00029" />
+      <option name="presentableId" value="LOCAL-00029" />
+      <option name="project" value="LOCAL" />
+      <updated>1736597928237</updated>
+    </task>
+    <task id="LOCAL-00030" summary="ФЗ 8. Вторая итерация. Добавлены базовый тестовый класс, тесты исключений, исправлены методы добавления и обновления задач.">
+      <option name="closed" value="true" />
+      <created>1736877485228</created>
+      <option name="number" value="00030" />
+      <option name="presentableId" value="LOCAL-00030" />
+      <option name="project" value="LOCAL" />
+      <updated>1736877485228</updated>
+    </task>
+    <task id="LOCAL-00031" summary="ФЗ 8. Вторая итерация. Добавлены базовый тестовый класс, тесты исключений, исправлены методы добавления и обновления задач.">
+      <option name="closed" value="true" />
+      <created>1736877812781</created>
+      <option name="number" value="00031" />
+      <option name="presentableId" value="LOCAL-00031" />
+      <option name="project" value="LOCAL" />
+      <updated>1736877812781</updated>
+    </task>
+    <task id="LOCAL-00032" summary="ФЗ 8. Вторая итерация. Добавлены базовый тестовый класс, тесты исключений, исправлены методы добавления и обновления задач.">
+      <option name="closed" value="true" />
+      <created>1736877947064</created>
+      <option name="number" value="00032" />
+      <option name="presentableId" value="LOCAL-00032" />
+      <option name="project" value="LOCAL" />
+      <updated>1736877947064</updated>
+    </task>
+    <task id="LOCAL-00033" summary="ФЗ 8. Вторая итерация. Добавлены базовый тестовый класс, тесты исключений, исправлены методы добавления и обновления задач.">
+      <option name="closed" value="true" />
+      <created>1736878243641</created>
+      <option name="number" value="00033" />
+      <option name="presentableId" value="LOCAL-00033" />
+      <option name="project" value="LOCAL" />
+      <updated>1736878243641</updated>
+    </task>
+    <task id="LOCAL-00034" summary="ФЗ 8. Вторая итерация. Добавлены базовый тестовый класс, тесты исключений, исправлены методы добавления и обновления задач.">
+      <option name="closed" value="true" />
+      <created>1736878582543</created>
+      <option name="number" value="00034" />
+      <option name="presentableId" value="LOCAL-00034" />
+      <option name="project" value="LOCAL" />
+      <updated>1736878582543</updated>
+    </task>
+    <task id="LOCAL-00035" summary="ФЗ 8. Третья итерация. Оптимизирован код в методах поздадач с обновлением эпика.">
+      <option name="closed" value="true" />
+      <created>1736891150799</created>
+      <option name="number" value="00035" />
+      <option name="presentableId" value="LOCAL-00035" />
+      <option name="project" value="LOCAL" />
+      <updated>1736891150799</updated>
+    </task>
+    <task id="LOCAL-00036" summary="ФЗ 8. Третья итерация. Оптимизирован код в методах поздадач с обновлением эпика.">
+      <option name="closed" value="true" />
+      <created>1736891215537</created>
+      <option name="number" value="00036" />
+      <option name="presentableId" value="LOCAL-00036" />
+      <option name="project" value="LOCAL" />
+      <updated>1736891215537</updated>
+    </task>
+    <task id="LOCAL-00037" summary="ФЗ 8. Третья итерация. Оптимизирован код в методах поздадач с обновлением эпика.">
+      <option name="closed" value="true" />
+      <created>1736891406968</created>
+      <option name="number" value="00037" />
+      <option name="presentableId" value="LOCAL-00037" />
+      <option name="project" value="LOCAL" />
+      <updated>1736891406968</updated>
+    </task>
+    <option name="localTasksCounter" value="38" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -380,6 +462,7 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
+    <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
     <MESSAGE value="protected taskCount" />
     <MESSAGE value="Разбивка по пакетам, добавлены методы удаления по ID" />
     <MESSAGE value="ФЗ 5.&#10;Добавлены тесты, журнал истории просмотров." />
@@ -387,6 +470,16 @@
     <MESSAGE value="ФЗ 6.1&#10;- В Node указать в качестве параметра неопределенный тип T;&#10;- Исправить методов remove() и removeNode() в InMemoryHistoryManager;&#10;- Добавить автотесты" />
     <MESSAGE value="ФЗ 7" />
     <MESSAGE value="ФЗ 7.&#10;Добавить реализацию бекенда через запись данных в файл и восстановление из файла." />
-    <option name="LAST_COMMIT_MESSAGE" value="ФЗ 7.&#10;Добавить реализацию бекенда через запись данных в файл и восстановление из файла." />
+    <MESSAGE value="ФЗ 8.&#10;Добавить реализацию сортировки задач по приоритету." />
+    <MESSAGE value="ФЗ 8. Вторая итерация. Добавлены базовый тестовый класс, тесты исключений, исправлены методы добавления и обновления задач." />
+    <MESSAGE value="ФЗ 8. Третья итерация. Оптимизирован код в методах поздадач с обновлением эпика." />
+    <option name="LAST_COMMIT_MESSAGE" value="ФЗ 8. Третья итерация. Оптимизирован код в методах поздадач с обновлением эпика." />
+  </component>
+  <component name="XDebuggerManager">
+    <pin-to-top-manager>
+      <pinned-members>
+        <PinnedItemInfo parentTag="ru.yandex.tasktracker.service.FileBackedTaskManager" memberName="historyManager" />
+      </pinned-members>
+    </pin-to-top-manager>
   </component>
 </project>

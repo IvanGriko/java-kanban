@@ -2,7 +2,7 @@ package ru.yandex.tasktracker.service;
 
 public class Managers {
 
-    public static TaskManager getDefaultTaskManager() {
+    public static FileBackedTaskManager getDefaultTaskManager() {
         return new FileBackedTaskManager();
     }
 

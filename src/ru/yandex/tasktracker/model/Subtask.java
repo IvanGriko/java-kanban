@@ -1,5 +1,6 @@
 package ru.yandex.tasktracker.model;
 
+import java.time.LocalDateTime;
 import java.util.Objects;
 
 public class Subtask extends Task {
@@ -10,12 +11,24 @@ public class Subtask extends Task {
         this.epic = epic;
     }
 
-    @Override
-    public String toString() {
-        return id + ",SUBTASK," + name + "," + getStatus() + "," + description + "," + getEpic() + "\n";
+    public Subtask(String name, String description, int id, TaskStatus status, long durationMinutes, Epic epic) {
+        super(name, description, id, status, durationMinutes);
+        this.epic = epic;
     }
 
-    public int getEpic() {
+    public Subtask(String name, String description, int id, TaskStatus status, LocalDateTime startTime,
+                   long durationMinutes, Epic epic) {
+        super(name, description, id, status, startTime, durationMinutes);
+        this.epic = epic;
+    }
+
+    @Override
+    public String toString() {
+        return id + ",SUBTASK," + name + "," + getStatus() + "," + description + "," + getEpicId() + "," +
+                startTime + "," + getDurationMinutes() + "," + endTime + "\n";
+    }
+
+    public int getEpicId() {
         return this.epic.getId();
     }
 

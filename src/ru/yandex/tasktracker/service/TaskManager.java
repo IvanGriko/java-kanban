@@ -5,74 +5,61 @@ import ru.yandex.tasktracker.model.Subtask;
 import ru.yandex.tasktracker.model.Task;
 
 import java.util.List;
+import java.util.Set;
 
 public interface TaskManager {
 
-    // получение списка задач
+    Set<Task> getPrioritizedTasks();
+
+    void checkTimeOverlapping(Task task);
+
     List getTasks();
 
-    // удаление всех задач
-    void deleteTasks();
+    void removeTasks();
 
-    // получение задачи по ID
-    Task getTask(int id);
+    Task getTaskById(int id);
 
-    // добавление задачи
     void addTask(Task task);
 
-    // обновление задачи
     void updateTask(Task task);
 
-    // удаление задачи
     void removeTask(Task task);
 
-    // удаление задачи по ID
     void removeTaskByID(int id);
 
-    // получение списка подзадач
     List getSubtasks();
 
-    // удаление всех подзадач
-    void deleteSubtasks();
+    void removeSubtasks();
 
-    // получение подзадачи по ID
-    Subtask getSubtask(int id);
+    Subtask getSubtaskById(int id);
 
-    // добавление подзадачи
     void addSubtask(Subtask subtask);
 
-    // обновление подзадачи
     void updateSubtask(Subtask subtask);
 
-    // удаление подзадачи
     void removeSubtask(Subtask subtask);
 
-    // удаление подзадачи по ID
     void removeSubtaskByID(int id);
 
-    // получение списка эпиков
     List getEpics();
 
-    // удаление всех эпиков
-    void deleteEpics();
+    void removeEpics();
 
-    // получение эпика по ID
-    Epic getEpic(int id);
+    Epic getEpicByIdWithoutMemorize(int id);
 
-    // добавление эпика
+    Epic getEpicById(int id);
+
     void addEpic(Epic epic);
 
-    // обновление эпика
     void updateEpic(Epic epic);
 
-    // удаление эпика по ID
-    void removeEpic(int id);
+    void removeEpicById(int id);
 
-    // обновление статуса эпика
     void updateEpicStatus(Epic epic);
 
-    // Получение списка всех подзадач определённого эпика
     List<Subtask> getSubtasksByEpic(Epic epic);
 
     List getHistory();
+
+    void removeFromHistory(Integer id);
 }

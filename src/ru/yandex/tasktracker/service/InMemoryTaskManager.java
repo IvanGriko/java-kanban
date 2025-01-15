@@ -1,186 +1,239 @@
 package ru.yandex.tasktracker.service;
 
+import ru.yandex.tasktracker.exceptions.ManagerSaveException;
 import ru.yandex.tasktracker.model.Epic;
 import ru.yandex.tasktracker.model.Subtask;
 import ru.yandex.tasktracker.model.Task;
 import ru.yandex.tasktracker.model.TaskStatus;
 
 import java.util.*;
+import java.util.stream.Collectors;
+import java.time.LocalDateTime;
+
+import static java.util.Comparator.comparing;
+import static java.util.Comparator.nullsLast;
 
 public class InMemoryTaskManager implements TaskManager {
 
-    public int taskCount = 1;                  // счётчик задач
+    public int taskCount = 1;
+
+    private final Map<Integer, Task> tasksMap = new HashMap<>();
+    private final Map<Integer, Subtask> subtasksMap = new HashMap<>();
+    private final Map<Integer, Epic> epicsMap = new HashMap<>();
+    protected Set<Task> sortedTasks = new TreeSet<>(comparing(Task::getStartTime, nullsLast(LocalDateTime::compareTo)));
+
+    private final HistoryManager historyManager = Managers.getDefaultHistory();
+
+    @Override
+    public Set<Task> getPrioritizedTasks() {
+        return sortedTasks;
+    }
+
+    @Override
+    public void checkTimeOverlapping(Task task) {
+        Optional<Task> matchingTask = sortedTasks.stream()
+                .filter(t -> t.getId() == task.getId())
+                .findFirst();
+        if (matchingTask.isPresent()) {
+            return;
+        }
+        sortedTasks.stream().forEach(t -> {
+            if ((t.getEndTime().isAfter(task.getStartTime()) && task.getStartTime().isBefore(t.getEndTime())) ||
+                    (t.getStartTime().equals(task.getStartTime()) && task.getEndTime().equals(t.getEndTime())) ||
+                    (t.getEndTime().equals(task.getStartTime()) && task.getStartTime().equals(t.getEndTime()))) {
+                throw new ManagerSaveException("Пересечение по времени с задачей " + t.getName());
+            }
+        });
+    }
 
     public int getTaskCount() {
         return taskCount;
     }
 
-    final Map<Integer, Task> tasksMap = new HashMap<>();
-    final Map<Integer, Subtask> subtasksMap = new HashMap<>();
-    final Map<Integer, Epic> epicsMap = new HashMap<>();
-    private final HistoryManager historyManager = new InMemoryHistoryManager();
-
-    // получение списка задач
     @Override
     public List<Task> getTasks() {
         return new ArrayList<>(tasksMap.values());
     }
 
-    // удаление всех задач
     @Override
-    public void deleteTasks() {
-        for (Task task : tasksMap.values())
-            historyManager.remove(task.getId());
+    public void removeTasks() {
+        for (Task task : tasksMap.values()) {
+            sortedTasks.remove(task);
+            historyManager.removeFromHistory(task.getId());
+        }
         tasksMap.clear();
     }
 
-    // получение задачи по ID
     @Override
-    public Task getTask(int id) {
+    public Task getTaskById(int id) {
         Task task = tasksMap.get(id);
         historyManager.add(task);
         return task;
     }
 
-    // добавление задачи
     @Override
     public void addTask(Task task) {
+        checkTimeOverlapping(task);
         tasksMap.put(task.getId(), task);
+        sortedTasks.add(task);
         taskCount++;
     }
 
-    // обновление задачи
     @Override
     public void updateTask(Task task) {
+        checkTimeOverlapping(task);
         tasksMap.replace(task.getId(), task);
+        sortedTasks.remove(task);
+        sortedTasks.add(task);
     }
 
-    // удаление задачи
     @Override
     public void removeTask(Task task) {
         tasksMap.remove(task.getId());
-        historyManager.remove(task.getId());
+        sortedTasks.remove(task);
+        historyManager.removeFromHistory(task.getId());
     }
 
-    // удаление задачи по ID
     @Override
     public void removeTaskByID(int id) {
+        sortedTasks.remove(tasksMap.get(id));
         tasksMap.remove(id);
-        historyManager.remove(id);
+        historyManager.removeFromHistory(id);
     }
 
-    // получение списка подзадач
     @Override
     public List<Subtask> getSubtasks() {
         return new ArrayList<>(subtasksMap.values());
     }
 
-    // удаление всех подзадач
     @Override
-    public void deleteSubtasks() {
-        for (Subtask subtask : subtasksMap.values())
-            historyManager.remove(subtask.getId());
+    public void removeSubtasks() {
+        for (Subtask subtask : subtasksMap.values()) {
+            sortedTasks.remove(subtask);
+            historyManager.removeFromHistory(subtask.getId());
+        }
         subtasksMap.clear();
         for (Epic epic : epicsMap.values()) {
             epic.clearSubtasks();
             epic.setStatus(TaskStatus.NEW);
+            epic.calculateTime();
         }
     }
 
-    // получение подзадачи по ID
     @Override
-    public Subtask getSubtask(int id) {
+    public Subtask getSubtaskById(int id) {
         Subtask subtask = subtasksMap.get(id);
         historyManager.add(subtask);
         return subtask;
     }
 
-    // добавление подзадачи
     @Override
     public void addSubtask(Subtask subtask) {
+        checkTimeOverlapping(subtask);
         subtasksMap.put(subtask.getId(), subtask);
+        sortedTasks.add(subtask);
         taskCount++;
-        updateEpicStatus(getEpic(subtask.getEpic()));
+        Epic tmpEpic = getEpicByIdWithoutMemorize(subtask.getEpicId());
+        tmpEpic.getSubtaskList().add(subtask);
+        updateEpicStatus(tmpEpic);
+        tmpEpic.calculateTime();
+        updateEpic(tmpEpic);
     }
 
-    // обновление подзадачи
     @Override
     public void updateSubtask(Subtask subtask) {
+        checkTimeOverlapping(subtask);
         subtasksMap.replace(subtask.getId(), subtask);
-        updateEpicStatus(getEpic(subtask.getEpic()));
+        sortedTasks.remove(subtask);
+        sortedTasks.add(subtask);
+        Epic tmpEpic = getEpicByIdWithoutMemorize(subtask.getEpicId());
+        tmpEpic.getSubtaskList().remove(subtask);
+        tmpEpic.getSubtaskList().add(subtask);
+        updateEpicStatus(tmpEpic);
+        tmpEpic.calculateTime();
+        updateEpic(tmpEpic);
     }
 
-    // удаление подзадачи
     @Override
     public void removeSubtask(Subtask subtask) {
+        sortedTasks.remove(subtask);
         subtasksMap.remove(subtask.getId());
-        updateEpicStatus(getEpic(subtask.getEpic()));
-        historyManager.remove(subtask.getId());
+        Epic tmpEpic = getEpicByIdWithoutMemorize(subtask.getEpicId());
+        tmpEpic.getSubtaskList().remove(subtask);
+        updateEpicStatus(tmpEpic);
+        tmpEpic.calculateTime();
+        updateEpic(tmpEpic);
+        historyManager.removeFromHistory(subtask.getId());
     }
 
-    // удаление подзадачи по ID
     @Override
     public void removeSubtaskByID(int id) {
         Subtask subtask = subtasksMap.get(id);
-        int epicID = subtask.getEpic();
+        int epicID = subtask.getEpicId();
+        sortedTasks.remove(subtasksMap.get(id));
         subtasksMap.remove(id);
         Epic epic = epicsMap.get(epicID);
-        ArrayList<Subtask> subtaskList = epic.getSubtaskList();
-        subtaskList.remove(subtask);
-        epic.setSubtaskList(subtaskList);
+        ArrayList<Subtask> subtList = epic.getSubtaskList();
+        subtList.remove(subtask);
+        epic.setSubtaskList(subtList);
         updateEpicStatus(epic);
-        historyManager.remove(id);
+        epic.calculateTime();
+        updateEpic(epic);
+        historyManager.removeFromHistory(id);
     }
 
-    // получение списка эпиков
     @Override
     public List<Epic> getEpics() {
         return new ArrayList<>(epicsMap.values());
     }
 
-    // удаление всех эпиков
     @Override
-    public void deleteEpics() {
+    public void removeEpics() {
+        for (Subtask subtask : subtasksMap.values()) {
+            sortedTasks.remove(subtask);
+            historyManager.removeFromHistory(subtask.getId());
+        }
         for (Epic epic : epicsMap.values())
-            historyManager.remove(epic.getId());
+            historyManager.removeFromHistory(epic.getId());
         epicsMap.clear();
         subtasksMap.clear();
     }
 
-    // получение эпика по ID
     @Override
-    public Epic getEpic(int id) {
+    public Epic getEpicByIdWithoutMemorize(int id) {
+        return epicsMap.get(id);
+    }
+
+    @Override
+    public Epic getEpicById(int id) {
         Epic epic = epicsMap.get(id);
         historyManager.add(epic);
         return epic;
     }
 
-    // добавление эпика
     @Override
     public void addEpic(Epic epic) {
         epicsMap.put(epic.getId(), epic);
         taskCount++;
     }
 
-    // обновление эпика
     @Override
     public void updateEpic(Epic epic) {
         epicsMap.replace(epic.getId(), epic);
     }
 
-    // удаление эпика по ID
     @Override
-    public void removeEpic(int id) {
-        List<Subtask> epicSubtasks = getSubtasksByEpic(getEpic(id));
+    public void removeEpicById(int id) {
+        List<Subtask> epicSubtasks = getSubtasksByEpic(getEpicByIdWithoutMemorize(id));
         for (Subtask subtask : epicSubtasks) {
+            sortedTasks.remove(subtask);
             subtasksMap.remove(subtask.getId());
-            historyManager.remove(subtask.getId());
+            historyManager.removeFromHistory(subtask.getId());
         }
         epicsMap.remove(id);
-        historyManager.remove(id);
+        historyManager.removeFromHistory(id);
     }
 
-    // обновление статуса эпика
     @Override
     public void updateEpicStatus(Epic epic) {
         int isDoneCount = 0;
@@ -205,22 +258,20 @@ public class InMemoryTaskManager implements TaskManager {
         updateEpic(epic);
     }
 
-    // Получение списка всех подзадач определённого эпика
     @Override
     public List<Subtask> getSubtasksByEpic(Epic epic) {
-        List<Subtask> subtasksList = new ArrayList<>(subtasksMap.values());
-        ArrayList<Subtask> subtasksListByEpic = new ArrayList<>();
-        for (Subtask subt : subtasksList) {
-            if (epic.getId() == subt.getEpic()) {
-                subtasksListByEpic.add(subt);
-            }
-        }
-        epic.setSubtaskList(subtasksListByEpic);
-        return subtasksListByEpic;
+        return subtasksMap.values().stream()
+                .filter(subtask -> epic.getId() == subtask.getEpicId())
+                .collect(Collectors.toList());
     }
 
     @Override
     public List<Task> getHistory() {
         return historyManager.getHistory();
+    }
+
+    @Override
+    public void removeFromHistory(Integer id) {
+        historyManager.removeFromHistory(id);
     }
 }
