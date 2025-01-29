@@ -6,6 +6,12 @@ import java.util.Objects;
 public class Subtask extends Task {
     protected Epic epic;
 
+    public Subtask(String name, String description, TaskStatus status, Epic epic) {
+        super(name, description);
+        this.status = status;
+        this.epic = epic;
+    }
+
     public Subtask(String name, String description, int taskCount, TaskStatus status, Epic epic) {
         super(name, description, taskCount, status);
         this.epic = epic;

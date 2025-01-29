@@ -4,7 +4,38 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="dec4f7ba-080c-4913-a420-5017c8352794" name="Changes" comment="ФЗ 8. Третья итерация. Оптимизирован код в методах поздадач с обновлением эпика." />
+    <list default="true" id="dec4f7ba-080c-4913-a420-5017c8352794" name="Changes" comment="ФЗ 8. Третья итерация. Оптимизирован код в методах поздадач с обновлением эпика.">
+      <change afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/gson_2_9_0.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/lib/gson-2.9.0.jar" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/ru/yandex/tasktracker/api/HttpTaskServer.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/ru/yandex/tasktracker/api/handlers/BaseHttpHandler.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/ru/yandex/tasktracker/api/handlers/EpicsHttpHandler.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/ru/yandex/tasktracker/api/handlers/HistoryHttpHandler.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/ru/yandex/tasktracker/api/handlers/PrioritizedHttpHandler.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/ru/yandex/tasktracker/api/handlers/SubtasksHttpHandler.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/ru/yandex/tasktracker/api/handlers/TasksHttpHandler.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/test/http/EpicsHttpHandlerTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/test/http/HistoryHttpHandlerTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/test/http/PrioritizedHttpHandlerTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/test/http/SubtasksHttpHandlerTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/test/http/TasksHttpHandlerTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TaskManager.iml" beforeDir="false" afterPath="$PROJECT_DIR$/TaskManager.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/ru/yandex/tasktracker/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ru/yandex/tasktracker/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/ru/yandex/tasktracker/model/Epic.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ru/yandex/tasktracker/model/Epic.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/ru/yandex/tasktracker/model/Subtask.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ru/yandex/tasktracker/model/Subtask.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/ru/yandex/tasktracker/model/Task.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ru/yandex/tasktracker/model/Task.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/ru/yandex/tasktracker/service/FileBackedTaskManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ru/yandex/tasktracker/service/FileBackedTaskManager.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/ru/yandex/tasktracker/service/InMemoryTaskManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ru/yandex/tasktracker/service/InMemoryTaskManager.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/ru/yandex/tasktracker/service/TaskManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ru/yandex/tasktracker/service/TaskManager.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/test/FileBackedTaskManagerTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/test/managers/FileBackedTaskManagerTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/test/InMemoryHistoryManagerTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/test/managers/InMemoryHistoryManagerTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/test/InMemoryTaskManagerTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/test/managers/InMemoryTaskManagerTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/test/ManagersTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/test/managers/ManagersTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/test/TaskManagerTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/test/managers/TaskManagerTest.java" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -68,12 +99,15 @@
     &quot;com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary&quot;: &quot;JUnit5&quot;,
     &quot;com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit5&quot;: &quot;&quot;,
     &quot;create.test.in.the.same.root&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;#19 on sprint__8-solution-time-and-duration&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;sprint__9-solution-http-api&quot;,
     &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
     &quot;java.suggest.annotation.dependency&quot;: &quot;false&quot;,
     &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/Users/griko/IdeaProjects/java-kanban&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/griko/IdeaProjects/m1-t25-api/lib/gson-2.9.0.jar&quot;,
     &quot;onboarding.tips.debug.path&quot;: &quot;C:/Users/griko/IdeaProjects/TaskManager/src/Main.java&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;Libraries&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.0&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.0&quot;,
     &quot;settings.editor.selected.configurable&quot;: &quot;preferences.lookFeel&quot;
   }
 }</component>
@@ -88,8 +122,10 @@
       <recent name="" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
-      <recent name="C:\Users\griko\IdeaProjects\java-kanban\src\ru\yandex\tasktracker" />
+      <recent name="C:\Users\griko\IdeaProjects\java-kanban\test\managers" />
+      <recent name="C:\Users\griko\IdeaProjects\java-kanban\test\http" />
       <recent name="C:\Users\griko\IdeaProjects\java-kanban\test" />
+      <recent name="C:\Users\griko\IdeaProjects\java-kanban\src\ru\yandex\tasktracker" />
       <recent name="C:\Users\griko\IdeaProjects\java-kanban\src\ru\yandex\tasktracker\service" />
     </key>
     <key name="CreateTestDialog.RecentsKey">

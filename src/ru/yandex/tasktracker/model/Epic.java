@@ -18,6 +18,10 @@ public class Epic extends Task {
         this.endTime = calculateEndTime();
     }
 
+    public Epic(String name, String description) {
+        super(name, description);
+    }
+
     public ArrayList<Subtask> getSubtaskList() {
         return subtaskList;
     }
