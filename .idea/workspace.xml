@@ -4,37 +4,16 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="dec4f7ba-080c-4913-a420-5017c8352794" name="Changes" comment="ФЗ 8. Третья итерация. Оптимизирован код в методах поздадач с обновлением эпика.">
-      <change afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/gson_2_9_0.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/lib/gson-2.9.0.jar" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/ru/yandex/tasktracker/api/HttpTaskServer.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/ru/yandex/tasktracker/api/handlers/BaseHttpHandler.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/ru/yandex/tasktracker/api/handlers/EpicsHttpHandler.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/ru/yandex/tasktracker/api/handlers/HistoryHttpHandler.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/ru/yandex/tasktracker/api/handlers/PrioritizedHttpHandler.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/ru/yandex/tasktracker/api/handlers/SubtasksHttpHandler.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/ru/yandex/tasktracker/api/handlers/TasksHttpHandler.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/test/http/EpicsHttpHandlerTest.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/test/http/HistoryHttpHandlerTest.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/test/http/PrioritizedHttpHandlerTest.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/test/http/SubtasksHttpHandlerTest.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/test/http/TasksHttpHandlerTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+    <list default="true" id="dec4f7ba-080c-4913-a420-5017c8352794" name="Changes" comment="ФЗ 9. Реализация HTTP-сервера.">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/TaskManager.iml" beforeDir="false" afterPath="$PROJECT_DIR$/TaskManager.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/ru/yandex/tasktracker/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ru/yandex/tasktracker/Main.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/ru/yandex/tasktracker/model/Epic.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ru/yandex/tasktracker/model/Epic.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/ru/yandex/tasktracker/model/Subtask.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ru/yandex/tasktracker/model/Subtask.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ru/yandex/tasktracker/model/Task.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ru/yandex/tasktracker/model/Task.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ru/yandex/tasktracker/service/FileBackedTaskManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ru/yandex/tasktracker/service/FileBackedTaskManager.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ru/yandex/tasktracker/service/InMemoryTaskManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ru/yandex/tasktracker/service/InMemoryTaskManager.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ru/yandex/tasktracker/service/TaskManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ru/yandex/tasktracker/service/TaskManager.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/test/FileBackedTaskManagerTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/test/managers/FileBackedTaskManagerTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/test/InMemoryHistoryManagerTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/test/managers/InMemoryHistoryManagerTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/test/InMemoryTaskManagerTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/test/managers/InMemoryTaskManagerTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/test/ManagersTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/test/managers/ManagersTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/test/TaskManagerTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/test/managers/TaskManagerTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/test/http/EpicsHttpHandlerTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ru/yandex/tasktracker/service/EpicsHttpHandlerTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/test/http/HistoryHttpHandlerTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ru/yandex/tasktracker/service/HistoryHttpHandlerTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/test/http/PrioritizedHttpHandlerTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ru/yandex/tasktracker/service/PrioritizedHttpHandlerTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/test/http/SubtasksHttpHandlerTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ru/yandex/tasktracker/service/SubtasksHttpHandlerTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/test/http/TasksHttpHandlerTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ru/yandex/tasktracker/service/TasksHttpHandlerTest.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -122,11 +101,11 @@
       <recent name="" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\griko\IdeaProjects\java-kanban\src\ru\yandex\tasktracker\service" />
       <recent name="C:\Users\griko\IdeaProjects\java-kanban\test\managers" />
       <recent name="C:\Users\griko\IdeaProjects\java-kanban\test\http" />
       <recent name="C:\Users\griko\IdeaProjects\java-kanban\test" />
       <recent name="C:\Users\griko\IdeaProjects\java-kanban\src\ru\yandex\tasktracker" />
-      <recent name="C:\Users\griko\IdeaProjects\java-kanban\src\ru\yandex\tasktracker\service" />
     </key>
     <key name="CreateTestDialog.RecentsKey">
       <recent name="ru.yandex.tasktracker.service" />
@@ -456,7 +435,15 @@
       <option name="project" value="LOCAL" />
       <updated>1736891406968</updated>
     </task>
-    <option name="localTasksCounter" value="38" />
+    <task id="LOCAL-00038" summary="ФЗ 9. Реализация HTTP-сервера.">
+      <option name="closed" value="true" />
+      <created>1738189189850</created>
+      <option name="number" value="00038" />
+      <option name="presentableId" value="LOCAL-00038" />
+      <option name="project" value="LOCAL" />
+      <updated>1738189189850</updated>
+    </task>
+    <option name="localTasksCounter" value="39" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -509,7 +496,8 @@
     <MESSAGE value="ФЗ 8.&#10;Добавить реализацию сортировки задач по приоритету." />
     <MESSAGE value="ФЗ 8. Вторая итерация. Добавлены базовый тестовый класс, тесты исключений, исправлены методы добавления и обновления задач." />
     <MESSAGE value="ФЗ 8. Третья итерация. Оптимизирован код в методах поздадач с обновлением эпика." />
-    <option name="LAST_COMMIT_MESSAGE" value="ФЗ 8. Третья итерация. Оптимизирован код в методах поздадач с обновлением эпика." />
+    <MESSAGE value="ФЗ 9. Реализация HTTP-сервера." />
+    <option name="LAST_COMMIT_MESSAGE" value="ФЗ 9. Реализация HTTP-сервера." />
   </component>
   <component name="XDebuggerManager">
     <pin-to-top-manager>
