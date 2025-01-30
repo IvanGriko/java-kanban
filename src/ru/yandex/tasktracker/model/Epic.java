@@ -11,8 +11,8 @@ public class Epic extends Task {
 
     protected ArrayList<Subtask> subtaskList = new ArrayList<>();
 
-    public Epic(String name, String description, int taskCount) {
-        super(name, description, taskCount);
+    public Epic(String name, String description, int id) {
+        super(name, description, id);
         this.startTime = calculateStartTime();
         this.duration = calculateDuration();
         this.endTime = calculateEndTime();

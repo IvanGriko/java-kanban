@@ -6,6 +6,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.AfterEach;
 import ru.yandex.tasktracker.api.HttpTaskServer;
 import ru.yandex.tasktracker.model.Task;
+import ru.yandex.tasktracker.model.TaskStatus;
 
 import java.io.IOException;
 import java.net.URI;
@@ -41,19 +42,20 @@ public class PrioritizedHttpHandlerTest {
 
     @Test
     public void getPrioritizedTest() throws IOException, InterruptedException {
-        Task task1 = new Task("Task 1", "Testing task 1");
-        task1.setStartTime(LocalDateTime.now());
-        task1.setDuration(15);
+        Task task1 = new Task("Task 1", "Testing task 1",
+                1, TaskStatus.NEW, LocalDateTime.now(), 15);
         taskManager.addTask(task1);
-        Task task2 = new Task("Task 2", "Testing task 2");
-        task2.setStartTime(LocalDateTime.now().plusMinutes(20));
-        task2.setDuration(15);
+        Task task2 = new Task("Task 2", "Testing task 2",
+                2, TaskStatus.NEW, LocalDateTime.now().plusMinutes(20), 15);
         taskManager.addTask(task2);
         Set<Task> sortedTasksFromManager = taskManager.getPrioritizedTasks();
         String sortedTasksJson = gson.toJson(sortedTasksFromManager);
         HttpClient client = HttpClient.newHttpClient();
         URI url = URI.create("http://localhost:8080/prioritized");
-        HttpRequest request = HttpRequest.newBuilder().uri(url).GET().build();
+        HttpRequest request = HttpRequest.newBuilder()
+                .uri(url)
+                .GET()
+                .build();
         HttpResponse<String> response = client.send(request, HttpResponse.BodyHandlers.ofString());
         assertEquals(200, response.statusCode());
         assertEquals(sortedTasksJson, response.body());

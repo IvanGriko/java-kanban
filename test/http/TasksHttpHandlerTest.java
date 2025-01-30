@@ -6,6 +6,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.AfterEach;
 import ru.yandex.tasktracker.api.HttpTaskServer;
 import ru.yandex.tasktracker.model.Task;
+import ru.yandex.tasktracker.model.TaskStatus;
 
 import java.io.IOException;
 import java.net.URI;
@@ -41,7 +42,8 @@ class TasksHttpHandlerTest {
 
     @Test
     public void addTaskTest() throws IOException, InterruptedException {
-        Task task = new Task("Task 1", "Testing task 1");
+        Task task = new Task("Task 1", "Testing task 1",
+                1, TaskStatus.NEW, LocalDateTime.now(), 15);
         String taskJson = gson.toJson(task);
         HttpClient client = HttpClient.newHttpClient();
         URI url = URI.create("http://localhost:8080/tasks");
@@ -59,19 +61,20 @@ class TasksHttpHandlerTest {
 
     @Test
     public void updateTaskTest() throws IOException, InterruptedException {
-        Task task1 = new Task("Task 1", "Testing task 1");
+        Task task1 = new Task("Task 1", "Testing task 1",
+                1, TaskStatus.NEW, LocalDateTime.now(), 15);
         taskManager.addTask(task1);
-        Task task2 = new Task("Task 2", "Testing task 2");
-        task2.setId(1);
+        Task task2 = new Task("Task 2", "Testing task 2",
+                1, TaskStatus.NEW, LocalDateTime.now().plusMinutes(20), 15);
         String taskJson2 = gson.toJson(task2);
         HttpClient client = HttpClient.newHttpClient();
         URI url = URI.create("http://localhost:8080/tasks");
-        HttpRequest request2 = HttpRequest.newBuilder()
+        HttpRequest request = HttpRequest.newBuilder()
                 .uri(url)
                 .POST(HttpRequest.BodyPublishers.ofString(taskJson2))
                 .build();
-        HttpResponse<String> response2 = client.send(request2, HttpResponse.BodyHandlers.ofString());
-        assertEquals(201, response2.statusCode());
+        HttpResponse<String> response = client.send(request, HttpResponse.BodyHandlers.ofString());
+        assertEquals(201, response.statusCode());
         List<Task> tasksFromManager = taskManager.getTasks();
         assertNotNull(tasksFromManager, "Задачи не возвращаются");
         assertEquals(1, tasksFromManager.size(), "Некорректное количество задач");
@@ -90,44 +93,47 @@ class TasksHttpHandlerTest {
         String taskJson2 = gson.toJson(task2);
         HttpClient client = HttpClient.newHttpClient();
         URI url = URI.create("http://localhost:8080/tasks");
-        HttpRequest request2 = HttpRequest.newBuilder()
+        HttpRequest request = HttpRequest.newBuilder()
                 .uri(url)
                 .POST(HttpRequest.BodyPublishers.ofString(taskJson2))
                 .build();
-        HttpResponse<String> response2 = client.send(request2, HttpResponse.BodyHandlers.ofString());
+        HttpResponse<String> response2 = client.send(request, HttpResponse.BodyHandlers.ofString());
         assertEquals(406, response2.statusCode());
     }
 
     @Test
     public void getTasksTest() throws IOException, InterruptedException {
-        Task task = new Task("Task 1", "Testing task 1");
+        Task task = new Task("Task 1", "Testing task 1",
+                1, TaskStatus.NEW, LocalDateTime.now(), 15);
         taskManager.addTask(task);
-        Task task2 = new Task("Task 2", "Testing task 2");
+        Task task2 = new Task("Task 2", "Testing task 2",
+                2, TaskStatus.NEW, LocalDateTime.now().plusMinutes(20), 15);
         taskManager.addTask(task2);
         String getTasksJson = gson.toJson(taskManager.getTasks());
         HttpClient client = HttpClient.newHttpClient();
         URI url = URI.create("http://localhost:8080/tasks");
-        HttpRequest request2 = HttpRequest.newBuilder()
+        HttpRequest request = HttpRequest.newBuilder()
                 .uri(url)
                 .GET()
                 .build();
-        HttpResponse<String> response = client.send(request2, HttpResponse.BodyHandlers.ofString());
+        HttpResponse<String> response = client.send(request, HttpResponse.BodyHandlers.ofString());
         assertEquals(200, response.statusCode());
         assertEquals(getTasksJson, response.body());
     }
 
     @Test
     public void getTaskByIdTest() throws IOException, InterruptedException {
-        Task task = new Task("Task 1", "Testing task 1");
+        Task task = new Task("Task 1", "Testing task 1",
+                1, TaskStatus.NEW, LocalDateTime.now(), 15);
         taskManager.addTask(task);
         String taskJson = gson.toJson(task);
         HttpClient client = HttpClient.newHttpClient();
         URI url = URI.create("http://localhost:8080/tasks/1");
-        HttpRequest request2 = HttpRequest.newBuilder()
+        HttpRequest request = HttpRequest.newBuilder()
                 .uri(url)
                 .GET()
                 .build();
-        HttpResponse<String> response = client.send(request2, HttpResponse.BodyHandlers.ofString());
+        HttpResponse<String> response = client.send(request, HttpResponse.BodyHandlers.ofString());
         assertEquals(200, response.statusCode());
         assertEquals(taskJson, response.body());
     }
@@ -136,25 +142,26 @@ class TasksHttpHandlerTest {
     public void taskIsNotFoundTest() throws IOException, InterruptedException {
         HttpClient client = HttpClient.newHttpClient();
         URI url = URI.create("http://localhost:8080/tasks/1");
-        HttpRequest request2 = HttpRequest.newBuilder()
+        HttpRequest request = HttpRequest.newBuilder()
                 .uri(url)
                 .GET()
                 .build();
-        HttpResponse<String> response = client.send(request2, HttpResponse.BodyHandlers.ofString());
+        HttpResponse<String> response = client.send(request, HttpResponse.BodyHandlers.ofString());
         assertEquals(404, response.statusCode());
     }
 
     @Test
     public void removeTaskTest() throws IOException, InterruptedException {
-        Task task = new Task("Task 1", "Testing task 1");
+        Task task = new Task("Task 1", "Testing task 1",
+                1, TaskStatus.NEW, LocalDateTime.now(), 15);
         taskManager.addTask(task);
         HttpClient client = HttpClient.newHttpClient();
         URI url = URI.create("http://localhost:8080/tasks/1");
-        HttpRequest request2 = HttpRequest.newBuilder()
+        HttpRequest request = HttpRequest.newBuilder()
                 .uri(url)
                 .DELETE()
                 .build();
-        HttpResponse<String> response = client.send(request2, HttpResponse.BodyHandlers.ofString());
+        HttpResponse<String> response = client.send(request, HttpResponse.BodyHandlers.ofString());
         assertEquals(200, response.statusCode());
     }
 }
