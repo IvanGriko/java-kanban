@@ -379,7 +379,7 @@ public abstract class TaskManagerTest<T extends TaskManager> {
         testManager.removeEpicById(epic1.getId());
         Assertions.assertNull(testManager.getEpicByIdWithoutMemorize(epic1.getId()), "Эпик не удалён.");
         Assertions.assertEquals(0, testManager.getSubtasksByEpicId(epic1.getId()).size(),
-                "Подзадачи эпика не удалены");
+                "Подзадачи эпика не удалены.");
     }
 
     @Test
