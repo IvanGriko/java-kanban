@@ -6,14 +6,8 @@
   <component name="ChangeListManager">
     <list default="true" id="dec4f7ba-080c-4913-a420-5017c8352794" name="Changes" comment="ФЗ 9. Реализация HTTP-сервера.">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ru/yandex/tasktracker/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ru/yandex/tasktracker/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ru/yandex/tasktracker/model/Epic.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ru/yandex/tasktracker/model/Epic.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ru/yandex/tasktracker/model/Subtask.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ru/yandex/tasktracker/model/Subtask.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/test/http/EpicsHttpHandlerTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ru/yandex/tasktracker/service/EpicsHttpHandlerTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/test/http/HistoryHttpHandlerTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ru/yandex/tasktracker/service/HistoryHttpHandlerTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/test/http/PrioritizedHttpHandlerTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ru/yandex/tasktracker/service/PrioritizedHttpHandlerTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/test/http/SubtasksHttpHandlerTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ru/yandex/tasktracker/service/SubtasksHttpHandlerTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/test/http/TasksHttpHandlerTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ru/yandex/tasktracker/service/TasksHttpHandlerTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/ru/yandex/tasktracker/api/handlers/SubtasksHttpHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ru/yandex/tasktracker/api/handlers/SubtasksHttpHandler.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/ru/yandex/tasktracker/api/handlers/TasksHttpHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ru/yandex/tasktracker/api/handlers/TasksHttpHandler.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -101,9 +95,9 @@
       <recent name="" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\griko\IdeaProjects\java-kanban\test\http" />
       <recent name="C:\Users\griko\IdeaProjects\java-kanban\src\ru\yandex\tasktracker\service" />
       <recent name="C:\Users\griko\IdeaProjects\java-kanban\test\managers" />
-      <recent name="C:\Users\griko\IdeaProjects\java-kanban\test\http" />
       <recent name="C:\Users\griko\IdeaProjects\java-kanban\test" />
       <recent name="C:\Users\griko\IdeaProjects\java-kanban\src\ru\yandex\tasktracker" />
     </key>
@@ -443,7 +437,23 @@
       <option name="project" value="LOCAL" />
       <updated>1738189189850</updated>
     </task>
-    <option name="localTasksCounter" value="39" />
+    <task id="LOCAL-00039" summary="ФЗ 9. Реализация HTTP-сервера.">
+      <option name="closed" value="true" />
+      <created>1738261779241</created>
+      <option name="number" value="00039" />
+      <option name="presentableId" value="LOCAL-00039" />
+      <option name="project" value="LOCAL" />
+      <updated>1738261779241</updated>
+    </task>
+    <task id="LOCAL-00040" summary="ФЗ 9. Реализация HTTP-сервера.">
+      <option name="closed" value="true" />
+      <created>1738261800081</created>
+      <option name="number" value="00040" />
+      <option name="presentableId" value="LOCAL-00040" />
+      <option name="project" value="LOCAL" />
+      <updated>1738261800081</updated>
+    </task>
+    <option name="localTasksCounter" value="41" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">

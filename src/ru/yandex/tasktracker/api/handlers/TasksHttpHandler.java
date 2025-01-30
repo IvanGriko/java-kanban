@@ -21,7 +21,8 @@ public class TasksHttpHandler extends BaseHttpHandler {
 
     @Override
     public void handle(HttpExchange exchange) throws IOException {
-        try { String method = exchange.getRequestMethod();
+        try {
+            String method = exchange.getRequestMethod();
             String path = exchange.getRequestURI().getPath();
             switch (method) {
                 case "GET":
@@ -38,7 +39,8 @@ public class TasksHttpHandler extends BaseHttpHandler {
                     }
                     break;
                 case "POST":
-                    try (InputStreamReader reader = new InputStreamReader(exchange.getRequestBody(), StandardCharsets.UTF_8)) {
+                    try (
+                            InputStreamReader reader = new InputStreamReader(exchange.getRequestBody(), StandardCharsets.UTF_8)) {
                         Task task = gson.fromJson(reader, Task.class);
                         Integer idFromRequest = task.getId();
                         if (task == null) {
