@@ -236,8 +236,8 @@ public class FileBackedTaskManager extends InMemoryTaskManager {
     }
 
     @Override
-    public List<Subtask> getSubtasksByEpicId(int id) {
-        List<Subtask> subtasksListByEpic = super.getSubtasksByEpicId(id);
+    public List getSubtasksByEpicId(int id) {
+        List subtasksListByEpic = super.getSubtasksByEpicId(id);
         save();
         return subtasksListByEpic;
     }
