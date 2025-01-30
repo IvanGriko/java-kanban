@@ -329,7 +329,7 @@ public abstract class TaskManagerTest<T extends TaskManager> {
         testManager.addEpic(epic2);
         testManager.removeEpics();
         Assertions.assertEquals(0, testManager.getEpics().size(),
-                "Эпики не удалены");
+                "Эпики не удалены.");
     }
 
     @Test
