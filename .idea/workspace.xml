@@ -5,7 +5,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="dec4f7ba-080c-4913-a420-5017c8352794" name="Changes" comment="ФЗ 9. Реализация HTTP-сервера.&#10;Правка CheckStyle.">
-      <change beforePath="$PROJECT_DIR$/test/managers/TaskManagerTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/test/managers/TaskManagerTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/ru/yandex/tasktracker/service/FileBackedTaskManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ru/yandex/tasktracker/service/FileBackedTaskManager.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/ru/yandex/tasktracker/service/InMemoryTaskManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ru/yandex/tasktracker/service/InMemoryTaskManager.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/ru/yandex/tasktracker/service/TaskManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ru/yandex/tasktracker/service/TaskManager.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -70,7 +73,7 @@
     "com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary": "JUnit5",
     "com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit5": "",
     "create.test.in.the.same.root": "true",
-    "git-widget-placeholder": "#20 on sprint__9-solution-http-api",
+    "git-widget-placeholder": "sprint__9-solution-http-api",
     "ignore.virus.scanning.warn.message": "true",
     "java.suggest.annotation.dependency": "false",
     "kotlin-language-version-configured": "true",
@@ -467,39 +470,7 @@
       <option name="project" value="LOCAL" />
       <updated>1738263092244</updated>
     </task>
-    <task id="LOCAL-00043" summary="ФЗ 9. Реализация HTTP-сервера.&#10;Правка CheckStyle.">
-      <option name="closed" value="true" />
-      <created>1738263965040</created>
-      <option name="number" value="00043" />
-      <option name="presentableId" value="LOCAL-00043" />
-      <option name="project" value="LOCAL" />
-      <updated>1738263965040</updated>
-    </task>
-    <task id="LOCAL-00044" summary="ФЗ 9. Реализация HTTP-сервера.&#10;Правка CheckStyle.">
-      <option name="closed" value="true" />
-      <created>1738264105425</created>
-      <option name="number" value="00044" />
-      <option name="presentableId" value="LOCAL-00044" />
-      <option name="project" value="LOCAL" />
-      <updated>1738264105425</updated>
-    </task>
-    <task id="LOCAL-00045" summary="ФЗ 9. Реализация HTTP-сервера.&#10;Правка CheckStyle.">
-      <option name="closed" value="true" />
-      <created>1738267631689</created>
-      <option name="number" value="00045" />
-      <option name="presentableId" value="LOCAL-00045" />
-      <option name="project" value="LOCAL" />
-      <updated>1738267631689</updated>
-    </task>
-    <task id="LOCAL-00046" summary="ФЗ 9. Реализация HTTP-сервера.&#10;Правка CheckStyle.">
-      <option name="closed" value="true" />
-      <created>1738267800819</created>
-      <option name="number" value="00046" />
-      <option name="presentableId" value="LOCAL-00046" />
-      <option name="project" value="LOCAL" />
-      <updated>1738267800819</updated>
-    </task>
-    <option name="localTasksCounter" value="47" />
+    <option name="localTasksCounter" value="43" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -553,7 +524,6 @@
     <MESSAGE value="ФЗ 8. Вторая итерация. Добавлены базовый тестовый класс, тесты исключений, исправлены методы добавления и обновления задач." />
     <MESSAGE value="ФЗ 8. Третья итерация. Оптимизирован код в методах поздадач с обновлением эпика." />
     <MESSAGE value="ФЗ 9. Реализация HTTP-сервера." />
-    <MESSAGE value="ФЗ 9. Реализация HTTP-сервера.&#10;Правка TaskManagerTest" />
     <MESSAGE value="ФЗ 9. Реализация HTTP-сервера.&#10;Правка CheckStyle." />
     <option name="LAST_COMMIT_MESSAGE" value="ФЗ 9. Реализация HTTP-сервера.&#10;Правка CheckStyle." />
   </component>
