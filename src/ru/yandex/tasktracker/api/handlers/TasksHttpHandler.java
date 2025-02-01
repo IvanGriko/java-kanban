@@ -11,8 +11,8 @@ import java.nio.charset.StandardCharsets;
 
 public class TasksHttpHandler extends BaseHttpHandler {
 
-    private final TaskManager taskManager;
-    private final Gson gson;
+    TaskManager taskManager;
+    Gson gson;
 
     public TasksHttpHandler(TaskManager taskManager, Gson gson) {
         this.taskManager = taskManager;
@@ -26,45 +26,13 @@ public class TasksHttpHandler extends BaseHttpHandler {
             String path = exchange.getRequestURI().getPath();
             switch (method) {
                 case "GET":
-                    if ("/tasks".equals(path)) {
-                        sendText(exchange, gson.toJson(taskManager.getTasks()), 200);
-                    } else {
-                        int id = extractIdFromPath(path);
-                        Task task = taskManager.getTaskById(id);
-                        if (task == null) {
-                            sendNotFound(exchange);
-                        } else {
-                            sendText(exchange, gson.toJson(task), 200);
-                        }
-                    }
+                    handleGetTask(exchange, path);
                     break;
                 case "POST":
-                    try (
-                            InputStreamReader reader = new InputStreamReader(exchange.getRequestBody(), StandardCharsets.UTF_8)) {
-                        Task task = gson.fromJson(reader, Task.class);
-                        Integer idFromRequest = task.getId();
-                        if (task == null) {
-                            sendText(exchange, "Ошибка данных задачи.", 400);
-                        } else if (taskManager.isTaskOverlapping(task)) {
-                            sendHasOverlapping(exchange);
-                        } else if (idFromRequest == null) {
-                            taskManager.addTask(task);
-                            sendText(exchange, "Задача успешно добавлена.", 201);
-                        } else {
-                            taskManager.updateTask(task);
-                            sendText(exchange, "Задача успешно обновлена.", 201);
-                        }
-                    }
+                    handlePostTask(exchange);
                     break;
                 case "DELETE":
-                    if ("/tasks".equals(path)) {
-                        taskManager.removeTasks();
-                        sendText(exchange, "Все задачи удалены.", 200);
-                    } else {
-                        int id = extractIdFromPath(path);
-                        taskManager.removeTaskByID(id);
-                        sendText(exchange, "Задача удалена.", 200);
-                    }
+                    handleDeleteTask(exchange, path);
                     break;
                 default:
                     sendText(exchange, "Ошибка: HTTP-метод не поддерживается.", 405);
@@ -73,6 +41,50 @@ public class TasksHttpHandler extends BaseHttpHandler {
             sendText(exchange, "Ошибка числового значения.", 400);
         } catch (Exception e) {
             sendServerError(exchange);
+        }
+    }
+
+    public void handleGetTask(HttpExchange exchange, String path) throws IOException {
+        if ("/tasks".equals(path)) {
+            sendText(exchange, gson.toJson(taskManager.getTasks()), 200);
+        } else {
+            int id = extractIdFromPath(path);
+            Task task = taskManager.getTaskById(id);
+            if (task == null) {
+                sendNotFound(exchange);
+            } else {
+                sendText(exchange, gson.toJson(task), 200);
+            }
+        }
+    }
+
+    public void handlePostTask(HttpExchange exchange) throws IOException {
+        try (
+                InputStreamReader reader = new InputStreamReader(exchange.getRequestBody(), StandardCharsets.UTF_8)) {
+            Task task = gson.fromJson(reader, Task.class);
+            Integer idFromRequest = task.getId();
+            if (task == null) {
+                sendText(exchange, "Ошибка данных задачи.", 400);
+            } else if (taskManager.isTaskOverlapping(task)) {
+                sendHasOverlapping(exchange);
+            } else if (idFromRequest == null) {
+                taskManager.addTask(task);
+                sendText(exchange, "Задача успешно добавлена.", 201);
+            } else {
+                taskManager.updateTask(task);
+                sendText(exchange, "Задача успешно обновлена.", 201);
+            }
+        }
+    }
+
+    public void handleDeleteTask(HttpExchange exchange, String path) throws IOException {
+        if ("/tasks".equals(path)) {
+            taskManager.removeTasks();
+            sendText(exchange, "Все задачи удалены.", 200);
+        } else {
+            int id = extractIdFromPath(path);
+            taskManager.removeTaskByID(id);
+            sendText(exchange, "Задача удалена.", 200);
         }
     }
 }
