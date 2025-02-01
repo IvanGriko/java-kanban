@@ -13,6 +13,10 @@ public interface TaskManager {
 
     void checkTimeOverlapping(Task task);
 
+    boolean isTaskOverlapping(Task task);
+
+    boolean areTasksOverlapping(Task task1, Task task2);
+
     List getTasks();
 
     void removeTasks();
@@ -57,7 +61,7 @@ public interface TaskManager {
 
     void updateEpicStatus(Epic epic);
 
-    List<Subtask> getSubtasksByEpic(Epic epic);
+    List<Subtask> getSubtasksByEpicId(int id);
 
     List getHistory();
 

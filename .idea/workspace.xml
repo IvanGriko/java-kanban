@@ -4,7 +4,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="dec4f7ba-080c-4913-a420-5017c8352794" name="Changes" comment="ФЗ 8. Третья итерация. Оптимизирован код в методах поздадач с обновлением эпика." />
+    <list default="true" id="dec4f7ba-080c-4913-a420-5017c8352794" name="Changes" comment="Добавлены DurationAdapter.java &amp; LocalDateTimeAdapter.java">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/ru/yandex/tasktracker/api/handlers/SubtasksHttpHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ru/yandex/tasktracker/api/handlers/SubtasksHttpHandler.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/ru/yandex/tasktracker/api/handlers/TasksHttpHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ru/yandex/tasktracker/api/handlers/TasksHttpHandler.java" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -68,13 +72,16 @@
     &quot;com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary&quot;: &quot;JUnit5&quot;,
     &quot;com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit5&quot;: &quot;&quot;,
     &quot;create.test.in.the.same.root&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;#19 on sprint__8-solution-time-and-duration&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;#20 on sprint__9-solution-http-api&quot;,
     &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
     &quot;java.suggest.annotation.dependency&quot;: &quot;false&quot;,
     &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/Users/griko/IdeaProjects/java-kanban&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/griko/IdeaProjects/m1-t25-api/lib/gson-2.9.0.jar&quot;,
     &quot;onboarding.tips.debug.path&quot;: &quot;C:/Users/griko/IdeaProjects/TaskManager/src/Main.java&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.lookFeel&quot;
+    &quot;project.structure.last.edited&quot;: &quot;Libraries&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.0&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.0&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;reference.projectsettings.compiler.javacompiler&quot;
   }
 }</component>
   <component name="RecentsManager">
@@ -88,9 +95,11 @@
       <recent name="" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
-      <recent name="C:\Users\griko\IdeaProjects\java-kanban\src\ru\yandex\tasktracker" />
-      <recent name="C:\Users\griko\IdeaProjects\java-kanban\test" />
+      <recent name="C:\Users\griko\IdeaProjects\java-kanban\test\http" />
       <recent name="C:\Users\griko\IdeaProjects\java-kanban\src\ru\yandex\tasktracker\service" />
+      <recent name="C:\Users\griko\IdeaProjects\java-kanban\test\managers" />
+      <recent name="C:\Users\griko\IdeaProjects\java-kanban\test" />
+      <recent name="C:\Users\griko\IdeaProjects\java-kanban\src\ru\yandex\tasktracker" />
     </key>
     <key name="CreateTestDialog.RecentsKey">
       <recent name="ru.yandex.tasktracker.service" />
@@ -420,7 +429,71 @@
       <option name="project" value="LOCAL" />
       <updated>1736891406968</updated>
     </task>
-    <option name="localTasksCounter" value="38" />
+    <task id="LOCAL-00038" summary="ФЗ 9. Реализация HTTP-сервера.">
+      <option name="closed" value="true" />
+      <created>1738189189850</created>
+      <option name="number" value="00038" />
+      <option name="presentableId" value="LOCAL-00038" />
+      <option name="project" value="LOCAL" />
+      <updated>1738189189850</updated>
+    </task>
+    <task id="LOCAL-00039" summary="ФЗ 9. Реализация HTTP-сервера.">
+      <option name="closed" value="true" />
+      <created>1738261779241</created>
+      <option name="number" value="00039" />
+      <option name="presentableId" value="LOCAL-00039" />
+      <option name="project" value="LOCAL" />
+      <updated>1738261779241</updated>
+    </task>
+    <task id="LOCAL-00040" summary="ФЗ 9. Реализация HTTP-сервера.">
+      <option name="closed" value="true" />
+      <created>1738261800081</created>
+      <option name="number" value="00040" />
+      <option name="presentableId" value="LOCAL-00040" />
+      <option name="project" value="LOCAL" />
+      <updated>1738261800081</updated>
+    </task>
+    <task id="LOCAL-00041" summary="ФЗ 9. Реализация HTTP-сервера.&#10;Правка CheckStyle.">
+      <option name="closed" value="true" />
+      <created>1738262344261</created>
+      <option name="number" value="00041" />
+      <option name="presentableId" value="LOCAL-00041" />
+      <option name="project" value="LOCAL" />
+      <updated>1738262344261</updated>
+    </task>
+    <task id="LOCAL-00042" summary="ФЗ 9. Реализация HTTP-сервера.&#10;Правка CheckStyle.">
+      <option name="closed" value="true" />
+      <created>1738263092244</created>
+      <option name="number" value="00042" />
+      <option name="presentableId" value="LOCAL-00042" />
+      <option name="project" value="LOCAL" />
+      <updated>1738263092244</updated>
+    </task>
+    <task id="LOCAL-00043" summary="Merge remote-tracking branch 'origin/sprint_9-solution-http-api' into sprint_9-solution-http-api&#10;&#10;# Conflicts:&#10;#&#9;.idea/workspace.xml">
+      <option name="closed" value="true" />
+      <created>1738268065489</created>
+      <option name="number" value="00043" />
+      <option name="presentableId" value="LOCAL-00043" />
+      <option name="project" value="LOCAL" />
+      <updated>1738268065489</updated>
+    </task>
+    <task id="LOCAL-00044" summary="Merge remote-tracking branch 'origin/sprint_9-solution-http-api' into sprint_9-solution-http-api&#10;&#10;# Conflicts:&#10;#&#9;.idea/workspace.xml">
+      <option name="closed" value="true" />
+      <created>1738268147683</created>
+      <option name="number" value="00044" />
+      <option name="presentableId" value="LOCAL-00044" />
+      <option name="project" value="LOCAL" />
+      <updated>1738268147683</updated>
+    </task>
+    <task id="LOCAL-00045" summary="Добавлены DurationAdapter.java &amp; LocalDateTimeAdapter.java">
+      <option name="closed" value="true" />
+      <created>1738270727118</created>
+      <option name="number" value="00045" />
+      <option name="presentableId" value="LOCAL-00045" />
+      <option name="project" value="LOCAL" />
+      <updated>1738270727118</updated>
+    </task>
+    <option name="localTasksCounter" value="46" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -473,7 +546,12 @@
     <MESSAGE value="ФЗ 8.&#10;Добавить реализацию сортировки задач по приоритету." />
     <MESSAGE value="ФЗ 8. Вторая итерация. Добавлены базовый тестовый класс, тесты исключений, исправлены методы добавления и обновления задач." />
     <MESSAGE value="ФЗ 8. Третья итерация. Оптимизирован код в методах поздадач с обновлением эпика." />
-    <option name="LAST_COMMIT_MESSAGE" value="ФЗ 8. Третья итерация. Оптимизирован код в методах поздадач с обновлением эпика." />
+    <MESSAGE value="ФЗ 9. Реализация HTTP-сервера." />
+    <MESSAGE value="ФЗ 9. Реализация HTTP-сервера.&#10;Правка CheckStyle." />
+    <MESSAGE value="ФЗ 9. Реализация HTTP-сервера.&#10;Правка TaskManagerTest" />
+    <MESSAGE value="Merge remote-tracking branch 'origin/sprint_9-solution-http-api' into sprint_9-solution-http-api&#10;&#10;# Conflicts:&#10;#&#9;.idea/workspace.xml" />
+    <MESSAGE value="Добавлены DurationAdapter.java &amp; LocalDateTimeAdapter.java" />
+    <option name="LAST_COMMIT_MESSAGE" value="Добавлены DurationAdapter.java &amp; LocalDateTimeAdapter.java" />
   </component>
   <component name="XDebuggerManager">
     <pin-to-top-manager>
@@ -481,5 +559,10 @@
         <PinnedItemInfo parentTag="ru.yandex.tasktracker.service.FileBackedTaskManager" memberName="historyManager" />
       </pinned-members>
     </pin-to-top-manager>
+  </component>
+  <component name="com.intellij.coverage.CoverageDataManagerImpl">
+    <SUITE FILE_PATH="coverage/java_kanban$Main.ic" NAME="Main Coverage Results" MODIFIED="1738263320197" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="true">
+      <FILTER>ru.yandex.tasktracker.*</FILTER>
+    </SUITE>
   </component>
 </project>

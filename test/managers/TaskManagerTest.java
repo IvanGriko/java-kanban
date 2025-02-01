@@ -329,7 +329,7 @@ public abstract class TaskManagerTest<T extends TaskManager> {
         testManager.addEpic(epic2);
         testManager.removeEpics();
         Assertions.assertEquals(0, testManager.getEpics().size(),
-                "Эпики не удалены");
+                "Эпики не удалены.");
     }
 
     @Test
@@ -378,8 +378,8 @@ public abstract class TaskManagerTest<T extends TaskManager> {
         testManager.addSubtask(testSubtask);
         testManager.removeEpicById(epic1.getId());
         Assertions.assertNull(testManager.getEpicByIdWithoutMemorize(epic1.getId()), "Эпик не удалён.");
-        Assertions.assertEquals(0, testManager.getSubtasksByEpic(epic1).size(),
-                "Подзадачи эпика не удалены");
+        Assertions.assertEquals(0, testManager.getSubtasksByEpicId(epic1.getId()).size(),
+                "Подзадачи эпика не удалены.");
     }
 
     @Test
@@ -412,7 +412,7 @@ public abstract class TaskManagerTest<T extends TaskManager> {
         ArrayList<Subtask> expectedSubtasks = new ArrayList<>();
         expectedSubtasks.add(testSubtask1);
         expectedSubtasks.add(testSubtask2);
-        Assertions.assertEquals(expectedSubtasks, testManager.getSubtasksByEpic(epic1),
+        Assertions.assertEquals(expectedSubtasks, testManager.getSubtasksByEpicId(epic1.getId()),
                 "Списки эпиков не совпадают.");
     }
 }
